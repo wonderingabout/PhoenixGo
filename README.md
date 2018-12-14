@@ -50,11 +50,9 @@ It is easier to use and should work on most linux distributions (has been tested
 
 Run the all-in one command below :
 
-```
-sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz
-```
+    sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz
 
-After the building is a success, continue reading at [Distribute mode](https://github.com/Tencent/PhoenixGo##optional--distribute-mode)
+After the building is a success, continue reading at [Running information](https://github.com/Tencent/PhoenixGo##running-information)
 
 #### Possibility B : manual way for more advanced users
 
@@ -87,6 +85,8 @@ $ wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20
 $ tar xvzf trained-network-20b-v1.tar.gz
 $ scripts/start.sh
 ```
+
+#### Running information
 
 `start.sh` will detect the number of GPUs, run `mcts_main` with proper config file, and write log files in directory `log`.
 You could also use a customized config by running `scripts/start.sh {config_path}`.
@@ -266,7 +266,7 @@ time_control {
 `c_denom` and `c_maxply` are parameters for deciding how to use the "main time".
 `reserved_time` is how many seconds should reserved (for network latency) in "byo-yomi time".
 
-#### 8. GTP command error : "invalid command"
+#### 8. GTP command error : `invalid command`
 
 Some GTP commands are not supported by PhoenixGo, for example the `showboard` command. Using unsupported commands will most likely make the engine not work. Make sure your GTP tool does not communicate with PhoenixGo with unsupported GTP commands.
 
