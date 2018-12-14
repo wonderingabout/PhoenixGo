@@ -32,7 +32,7 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 
 Other versions may work, but they have not been tested (especially for bazel), try and see. 
 
-Recommendation : the bazel compile uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all runing programs, to free as much RAM as possible.
+Recommendation : the bazel building uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all runing programs, to free as much RAM as possible.
 
 You have 2 possibilities for building on linux :
 
@@ -52,7 +52,7 @@ Run the all-in one command below :
 sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz
 ```
 
-After the compile is a success, continue reading at [Distribute mode](https://github.com/wonderingabout/PhoenixGo/tree/faqv2-bazel-master#distribute-mode)
+After the building is a success, continue reading at [Distribute mode](https://github.com/wonderingabout/PhoenixGo/tree/faqv2-bazel-master#distribute-mode)
 
 If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question]
 
@@ -201,6 +201,8 @@ Read `mcts/mcts_config.proto` for more config options.
 * `--allow_ip`: work with `--listen_port`, list of client ip allowed to connect
 * `--fork_per_request`: work with `--listen_port`, fork for each request or not
 
+For windows, see [FAQ question syntax error]()
+
 Glog options are also supported:
 
 * `--logtostderr`: log message to stderr
@@ -212,7 +214,7 @@ Glog options are also supported:
 
 ## FAQ
 
-#### 1. I am getting errors during bazel configure, bazel compile, and/or running PhoenixGo engine
+#### 1. I am getting errors during bazel configure, bazel building, and/or running PhoenixGo engine
 
 If you built with bazel, see : [Most common path errors during bazel configure](https://github.com/Tencent/PhoenixGo/wiki/Install-cuda-and-do-bazel-configuration)
 
@@ -316,7 +318,7 @@ model_config {
 }
 ```
 
-#### 11. What is the speed of the engine :
+#### 11. What is the speed of the engine ?
 
 Some independent speed benchmarks have been run, they are available in the wiki :
 -for [GTX 1060] 
