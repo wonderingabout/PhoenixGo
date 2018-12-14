@@ -333,13 +333,17 @@ Some independent speed benchmarks have been run, they are available in the wiki 
 
 # Benchmark setup :
 
+## setup
 - hardware : gtx 1060 6gb (1gpu, power limit set to 75W), ryzen r7 1700, 16gb ram
 - software : ubuntu 16.04 LTS, nvidia 384, cuda 9.0, cudnn 7.1.4, tensorrt 3.0.4, bazel 0.11.1
 - engine settings: unlimited time per move, all time management settings disabled in config file
 
-methodology : 
+## methodology : 
 - most moves come from the same game played using gtp2ogs, for few moves moves, copy paste stderr output
 - tensorRT is only used with batch size 4, because batch size of 5 and more is not supported (engine fails to run)
+
+## credits :
+credit for doing this tests go to [wonderingabout](https://github.com/wonderingabout)
 
 ## BATCH SIZE 4 :
 
