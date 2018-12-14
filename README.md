@@ -32,6 +32,8 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 
 Other versions may work, but they have not been tested (especially for bazel), try and see. 
 
+Recommendation : the bazel compile uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all runing programs, to free as much RAM as possible.
+
 You have 2 possibilities for building on linux :
 
 #### Possibility A : if you want the easy way, Automatic all in command
@@ -44,8 +46,6 @@ This all in one command includes :
 
 It is easier to use and should work on most linux distributions (has been tested successfully on ubuntu 16.04 LTS for example)
 
-Recommendation : the bazel compile uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all runing programs, to free as much RAM as possible.
-
 Run the all-in one command below :
 
 ```
@@ -54,7 +54,7 @@ sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git cl
 
 After the compile is a success, continue reading at [Distribute mode](https://github.com/wonderingabout/PhoenixGo/tree/faqv2-bazel-master#distribute-mode)
 
-If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn errors), please make sure there is not [one of the most common path errors]()
+If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question]
 
 #### Possibility B : manual way for more advanced users
 
@@ -78,7 +78,7 @@ $ bazel build //mcts:mcts_main
 
 Dependices such as Tensorflow will be downloaded automatically. The building prosess may take a long time.
 
-If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn errors), please make sure there is not [one of the most common path errors]()
+If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question]
 
 ##### Running
 
@@ -98,7 +98,7 @@ Furthermore, if you want to fully control all the options of `mcts_main` (such a
 you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options).
 
 The engine supports the GTP protocol, means it could be used with a GUI with GTP capability,
-such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs]()
+such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question]
 
 #### Distribute mode
 
@@ -212,7 +212,11 @@ Glog options are also supported:
 
 ## FAQ
 
-#### 1. Where is the win rate?
+#### 1. I am getting errors during bazel configure, bazel compile, and/or running PhoenixGo engine
+
+If you built with bazel, see : [Most common path errors during bazel configure](https://github.com/Tencent/PhoenixGo/wiki/Install-cuda-and-do-bazel-configuration)
+
+#### 2. Where is the win rate?
 
 Print in the log, something like:
 
@@ -220,7 +224,7 @@ Print in the log, something like:
 I0514 12:51:32.724236 14467 mcts_engine.cc:157] 1th move(b): dp, <b>winrate=44.110905%</b>, N=654, Q=-0.117782, p=0.079232, v=-0.116534, cost 39042.679688ms, sims=7132, height=11, avg_height=5.782244, global_step=639200
 </pre>
 
-#### 2. There are too much log.
+#### 3. There are too much log.
 
 Passing `--v=0` to `mcts_main` will turn off many debug log.
 Moreover, `--minloglevel=1` and `--minloglevel=2` could disable INFO log and WARNING log.
@@ -228,23 +232,23 @@ Moreover, `--minloglevel=1` and `--minloglevel=2` could disable INFO log and WAR
 Or, if you just don't want to log to stderr, replace `--logtostderr` to `--log_dir={log_dir}`,
 then you could read your log from `{log_dir}/mcts_main.INFO`.
 
-#### 3. How to run with Sabaki?
+#### 4. How to run with Sabaki?
 
 Setting GTP engine in Sabaki's menu: `Engines -> Manage Engines`, fill `Path` with path of `start.sh`.
 Click `Engines -> Attach` to use the engine in your game.
 See also [#22](https://github.com/Tencent/PhoenixGo/issues/22).
 
-#### 4. How make PhoenixGo think with longer/shorter time?
+#### 5. How make PhoenixGo think with longer/shorter time?
 
 Modify `timeout_ms_per_step` in your config file.
 
-#### 5. How make PhoenixGo think with constant time per move?
+#### 6. How make PhoenixGo think with constant time per move?
 
 Modify your config file. `early_stop`, `unstable_overtime`, `behind_overtime` and
 `time_control` are options that affect the search time, remove them if exist then
 each move will cost constant time/simulations.
 
-#### 6. GTP command `time_settings` doesn't work.
+#### 7. GTP command `time_settings` doesn't work.
 
 Add these lines in your config:
 
@@ -260,7 +264,13 @@ time_control {
 `c_denom` and `c_maxply` are parameters for deciding how to use the "main time".
 `reserved_time` is how many seconds should reserved (for network latency) in "byo-yomi time".
 
-#### 7. Syntax error (Windows)
+#### 8. GTP command error : "invalid command"
+
+Some GTP commands are not supported by PhoenixGo, for example the `showboard` command. Using unsupported commands will most likely make the engine not work. Make sure your GTP tool does not communicate with PhoenixGo with unsupported GTP commands.
+
+For example, for gtp2ogs server command line GTP tool, you need to edit the file gtp2ogs.js and manually remove the `showboard` line if it is not already done, [see](https://github.com/online-go/gtp2ogs/commit/d5ebdbbde259a97c5ae1aed0ec42a07c9fbb2dbf)
+
+#### 9. Syntax error (Windows)
 
 For windows,
 - in config file, 
@@ -280,7 +290,7 @@ Here you need to write paths with `\` and not `/`. Also command format on window
 
 See point 8. below :
 
-#### 8. '"ckpt/zero.ckpt-20b-v1.FP32.PLAN"' error: No such file or directory
+#### 10. '"ckpt/zero.ckpt-20b-v1.FP32.PLAN"' error: No such file or directory
 
 This fix works for all systems : Linux, Mac, Windows, only the name of the ckpt file changes. Modify your config file and write the full path of your ckpt folder, for example for linux : 
 
@@ -296,6 +306,18 @@ model_config {
     train_dir: "c:/users/amd2018/Downloads/PhoenixGo/ckpt"
 ```
 
-#### 9. Path errors during bazel configure
+if you use tensorRT (linux only, and compatible nvidia GPU only), also change path of tensorRT, for example :
 
-See https://github.com/Tencent/PhoenixGo/wiki/Install-cuda-and-do-bazel-configuration
+```
+model_config {
+    train_dir: "/home/amd2018/PhoenixGo/ckpt/"
+    enable_tensorrt: 1
+    tensorrt_model_path: "/home/amd2018/test/PhoenixGo/ckpt/zero.ckpt-20b-v1.FP32.PLAN"
+}
+```
+
+#### 11. What is the speed of the engine :
+
+Some independent speed benchmarks have been run, they are available in the wiki :
+-for [GTX 1060] 
+-for [Tesla V100]
