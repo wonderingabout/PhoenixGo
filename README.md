@@ -98,7 +98,7 @@ you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-
 The engine supports the GTP protocol, means it could be used with a GUI with GTP capability,
 such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](https://github.com/Tencent/PhoenixGo/#8-gtp-command-error--invalid-command)
 
-#### Distribute mode
+#### (Optional) : Distribute mode
 
 PhoenixGo support running with distributed workers, if there are GPUs on different machine.
 
