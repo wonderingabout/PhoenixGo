@@ -54,7 +54,7 @@ Run the all-in one command below :
 sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz
 ```
 
-After the building is a success, continue reading at [Distribute mode](https://github.com/Tencent/PhoenixGo#distribute-mode)
+After the building is a success, continue reading at [Distribute mode](https://github.com/Tencent/PhoenixGo##optional--distribute-mode)
 
 #### Possibility B : manual way for more advanced users
 
