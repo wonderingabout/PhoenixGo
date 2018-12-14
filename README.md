@@ -32,7 +32,9 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 
 Other versions may work, but they have not been tested (especially for bazel), try and see. 
 
-Recommendation : the bazel building uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all runing programs, to free as much RAM as possible.
+Recommendation : the bazel building uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all running programs, to free as much RAM as possible.
+
+If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question : building and running errors](https://github.com/wonderingabout/PhoenixGo/blob/faqv2-bazel-master/README.md#1-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine)
 
 You have 2 possibilities for building on linux :
 
@@ -53,8 +55,6 @@ sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git cl
 ```
 
 After the building is a success, continue reading at [Distribute mode](https://github.com/wonderingabout/PhoenixGo/tree/faqv2-bazel-master#distribute-mode)
-
-If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question]
 
 #### Possibility B : manual way for more advanced users
 
@@ -78,8 +78,6 @@ $ bazel build //mcts:mcts_main
 
 Dependices such as Tensorflow will be downloaded automatically. The building prosess may take a long time.
 
-If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question]
-
 ##### Running
 
 Download and extract the trained network, then run:
@@ -98,7 +96,7 @@ Furthermore, if you want to fully control all the options of `mcts_main` (such a
 you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options).
 
 The engine supports the GTP protocol, means it could be used with a GUI with GTP capability,
-such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question]
+such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](https://github.com/wonderingabout/PhoenixGo/blob/faqv2-bazel-master/README.md#8-gtp-command-error--invalid-command)
 
 #### Distribute mode
 
@@ -201,8 +199,6 @@ Read `mcts/mcts_config.proto` for more config options.
 * `--allow_ip`: work with `--listen_port`, list of client ip allowed to connect
 * `--fork_per_request`: work with `--listen_port`, fork for each request or not
 
-For windows, see [FAQ question syntax error]()
-
 Glog options are also supported:
 
 * `--logtostderr`: log message to stderr
@@ -212,11 +208,15 @@ Glog options are also supported:
 
 `mcts_main --help` for more command line options.
 
+For windows, see [FAQ question syntax error](https://github.com/wonderingabout/PhoenixGo/blob/faqv2-bazel-master/README.md#9-syntax-error-windows)
+
 ## FAQ
 
 #### 1. I am getting errors during bazel configure, bazel building, and/or running PhoenixGo engine
 
 If you built with bazel, see : [Most common path errors during bazel configure](https://github.com/Tencent/PhoenixGo/wiki/Install-cuda-and-do-bazel-configuration)
+
+If you are still getting erros, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
 
 #### 2. Where is the win rate?
 
@@ -290,7 +290,7 @@ Here you need to write paths with `\` and not `/`. Also command format on window
 
 `mcts_main.exe --gtp --config_path C:\Users\amd2018\Downloads\PhoenixGo\etc\mcts_1gpu_notensorrt.conf`
 
-See point 8. below :
+See next point below :
 
 #### 10. '"ckpt/zero.ckpt-20b-v1.FP32.PLAN"' error: No such file or directory
 
