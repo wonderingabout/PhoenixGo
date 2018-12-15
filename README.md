@@ -41,10 +41,10 @@ You have 2 possibilities for building on linux :
 #### Possibility A : if you want the easy way, Automatic all in command
 
 This all in one command includes : 
-- Download and install bazel
-- Clone from Tencent github
+- Download and install bazel and dependencies
+- Clone PhoenixGo from Tencent github
 - Configure the build : 
-`./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if need.
+`./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if needed.
 - Building with bazel : this may take long time (1 hour or more)
 - Download the trained network (ckpt)
 
@@ -68,7 +68,7 @@ $ cd PhoenixGo
 $ ./configure
 ```
 
-`./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if need.
+`./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if needed.
 
 Then build with bazel:
 
