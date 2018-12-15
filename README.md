@@ -88,7 +88,6 @@ $ tar xvzf trained-network-20b-v1.tar.gz
 #### Running 
 
 Run the engine : `scripts/start.sh`
-```
 
 `start.sh` will detect the number of GPUs, run `mcts_main` with proper config file, and write log files in directory `log`.
 You could also use a customized config by running `scripts/start.sh {config_path}`.
