@@ -26,7 +26,7 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 #### Requirements
 
 * GCC with C++11 support
-* Bazel (**0.11.1 is known-good**)
+* Bazel (**0.11.1 is known-good**, 0.17.2 has been tested by an independent contributor to also work)
 * (Optional) CUDA (9.0 is known good) and cuDNN (7.1.4 is known good) for GPU support 
 * (Optional) TensorRT (for accelerating computation on GPU, 3.0.4 is known-good)
 
@@ -52,7 +52,7 @@ Run the all-in one command below :
 
     sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz
 
-After the building is a success, continue reading at [Running information](https://github.com/Tencent/PhoenixGo##running-information)
+After the building is a success, continue reading at [Running](https://github.com/Tencent/PhoenixGo#running)
 
 #### Possibility B : manual way for more advanced users
 
@@ -76,17 +76,22 @@ $ bazel build //mcts:mcts_main
 
 Dependices such as Tensorflow will be downloaded automatically. The building prosess may take a long time.
 
-##### Running
+##### Downloading the trained network (ckpt)
 
 Download and extract the trained network, then run:
 
 ```
 $ wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz
 $ tar xvzf trained-network-20b-v1.tar.gz
-$ scripts/start.sh
 ```
 
-#### Running information
+#### Running 
+
+Run :
+
+```
+$ scripts/start.sh
+```
 
 `start.sh` will detect the number of GPUs, run `mcts_main` with proper config file, and write log files in directory `log`.
 You could also use a customized config by running `scripts/start.sh {config_path}`.
