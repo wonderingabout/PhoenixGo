@@ -87,10 +87,7 @@ $ tar xvzf trained-network-20b-v1.tar.gz
 
 #### Running 
 
-Run the engine :
-
-```
-$ scripts/start.sh
+Run the engine : `scripts/start.sh`
 ```
 
 `start.sh` will detect the number of GPUs, run `mcts_main` with proper config file, and write log files in directory `log`.
@@ -98,7 +95,7 @@ You could also use a customized config by running `scripts/start.sh {config_path
 See also [#configure-guide](#configure-guide).
 
 Furthermore, if you want to fully control all the options of `mcts_main` (such as, changing log destination),
-you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options).
+you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options). See also [path config file settings](https://github.com/Tencent/PhoenixGo/#10-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
 
 The engine supports the GTP protocol, means it could be used with a GUI with GTP capability,
 such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](https://github.com/Tencent/PhoenixGo/#8-gtp-command-error--invalid-command)
