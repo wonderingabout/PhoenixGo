@@ -43,7 +43,9 @@ You have 2 possibilities for building on linux :
 This all in one command includes : 
 - Download and install bazel
 - Clone from Tencent github
-- Building with bazel
+- Configure the build : 
+`./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if need.
+- Building with bazel : this may take long time (1 hour or more)
 - Download the trained network (ckpt)
 
 It is easier to use and should work on most linux distributions (has been tested successfully on ubuntu 16.04 LTS for example)
@@ -66,7 +68,7 @@ $ cd PhoenixGo
 $ ./configure
 ```
 
-`./configure` will ask where CUDA and TensorRT have been installed, specify them if need.
+`./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if need.
 
 Then build with bazel:
 
@@ -74,7 +76,7 @@ Then build with bazel:
 $ bazel build //mcts:mcts_main
 ```
 
-Dependices such as Tensorflow will be downloaded automatically. The building prosess may take a long time.
+Dependices such as Tensorflow will be downloaded automatically. The building prosess may take a long time (1 hour or more).
 
 ##### Downloading the trained network (ckpt)
 
