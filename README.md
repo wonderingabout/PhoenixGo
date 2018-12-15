@@ -2,7 +2,7 @@
 
 **PhoenixGo** is a Go AI program which implements the AlphaGo Zero paper
 "[Mastering the game of Go without human knowledge](https://deepmind.com/documents/119/agz_unformatted_nature.pdf)".
-It is also known as "BensonDarr" in FoxGo, "cronus" in CGOS,
+It is also known as "BensonDarr" and "金毛测试" in FoxGo, "cronus" in CGOS,
 and the champion of "World AI Go Tournament 2018" held in Fuzhou China.
 
 If you use PhoenixGo in your project, please consider mentioning in your README.
@@ -44,7 +44,7 @@ This all in one command includes :
 - Download and install bazel
 - Clone from Tencent github
 - Building with bazel
-- Download trained weights
+- Download the trained network (ckpt)
 
 It is easier to use and should work on most linux distributions (has been tested successfully on ubuntu 16.04 LTS for example)
 
@@ -78,7 +78,7 @@ Dependices such as Tensorflow will be downloaded automatically. The building pro
 
 ##### Downloading the trained network (ckpt)
 
-Download and extract the trained network, then run:
+Download and extract the trained network :
 
 ```
 $ wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz
@@ -87,7 +87,7 @@ $ tar xvzf trained-network-20b-v1.tar.gz
 
 #### Running 
 
-Run :
+Run the engine :
 
 ```
 $ scripts/start.sh
