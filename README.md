@@ -103,7 +103,7 @@ Furthermore, if you want to fully control all the options of `mcts_main` (such a
 you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options). See also [path config file settings](https://github.com/Tencent/PhoenixGo/#10-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
 
 The engine supports the GTP protocol, means it could be used with a GUI with GTP capability,
-such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](https://github.com/Tencent/PhoenixGo/#8-gtp-command-error--invalid-command)
+such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](https://github.com/Tencent/PhoenixGo/#9-gtp-command-error--invalid-command)
 
 #### (Optional) : Distribute mode
 
@@ -215,7 +215,7 @@ Glog options are also supported:
 
 `mcts_main --help` for more command line options.
 
-For windows, see [FAQ question syntax error](https://github.com/Tencent/PhoenixGo/#9-syntax-error-windows)
+For windows, see [FAQ question syntax error](https://github.com/Tencent/PhoenixGo/#11-syntax-error-windows)
 
 ## FAQ
 
@@ -257,7 +257,19 @@ Modify your config file. `early_stop`, `unstable_overtime`, `behind_overtime` an
 `time_control` are options that affect the search time, remove them if exist then
 each move will cost constant time/simulations.
 
-#### 7. GTP command `time_settings` doesn't work.
+#### 7. What is the speed of the engine ? How can i make the engine think faster ?
+
+GPU is much faster to compute than CPU (but only nvidia GPU are supported)
+
+TensorRT also increases significantly the speed of computation
+
+Bigger batch size significantly increases the speed of the computation, but a bigger batch size puts a bigger burden on the computation device (in case it is the GPU, higher GPU load, higher VRAM usage), increase it only if your computation device can handle it
+
+Some independent speed benchmarks have been run, they are available in the wiki :
+
+- for GTX 1060 (create a wiki page using the end of this article, then remove this text) :  [benchmark testing batch size from 4 to 64, tree size up to 2000M, max children up to 512)(https://github.com/Tencent/PhoenixGo/wiki/Benchmark-computation-speed-increase-with-batch-size-tensorrt-gtx1060)
+
+#### 8. GTP command `time_settings` doesn't work.
 
 Add these lines in your config:
 
@@ -273,13 +285,19 @@ time_control {
 `c_denom` and `c_maxply` are parameters for deciding how to use the "main time".
 `reserved_time` is how many seconds should reserved (for network latency) in "byo-yomi time".
 
-#### 8. GTP command error : `invalid command`
+#### 9. GTP command error : `invalid command`
 
 Some GTP commands are not supported by PhoenixGo, for example the `showboard` command. Using unsupported commands will most likely make the engine not work. Make sure your GTP tool does not communicate with PhoenixGo with unsupported GTP commands.
 
 For example, for gtp2ogs server command line GTP tool, you need to edit the file gtp2ogs.js and manually remove the `showboard` line if it is not already done, [see](https://github.com/online-go/gtp2ogs/commit/d5ebdbbde259a97c5ae1aed0ec42a07c9fbb2dbf)
 
-#### 9. Syntax error (Windows)
+#### 10. The game does not start, error : `unacceptable komi`
+
+With the default settings, the only komi value supported is only 7.5, with chinese rules only. If it is not automated, you need to manually set komi value to 7.5 with chinese rules.
+
+information : the BensonDarr on FoxGo server is able to play with 6.5 komi because it has been modified, but this is not true for the PhoenixGo engine provided here.
+
+#### 11. Syntax error (Windows)
 
 For windows,
 - in config file, 
@@ -299,7 +317,7 @@ Here you need to write paths with `\` and not `/`. Also command format on window
 
 See next point below :
 
-#### 10. '"ckpt/zero.ckpt-20b-v1.FP32.PLAN"' error: No such file or directory
+#### 12. '"ckpt/zero.ckpt-20b-v1.FP32.PLAN"' error: No such file or directory
 
 This fix works for all systems : Linux, Mac, Windows, only the name of the ckpt file changes. Modify your config file and write the full path of your ckpt folder, for example for linux : 
 
@@ -325,18 +343,14 @@ model_config {
 }
 ```
 
-#### 11. What is the speed of the engine ? How can i make the engine think faster ?
 
-GPU is much faster to compute than CPU (but only nvidia GPU are supported)
 
-TensorRT also increases significantly the speed of computation
 
-Bigger batch size significantly increases the speed of the computation, but a bigger batch size puts a bigger burden on the computation device (in case it is the GPU, higher GPU load, higher VRAM usage), increase it only if your computation device can handle it
 
-Some independent speed benchmarks have been run, they are available in the wiki :
 
-- for GTX 1060 :  [benchmark testing batch size from 4 to 64, tree size up to 2000M, max children up to 512)(https://github.com/Tencent/PhoenixGo/wiki/Benchmark-computation-speed-increase-with-batch-size-tensorrt-gtx1060)
 
+
+create a wiki page starting from here, then remove it from main readme, see faq question 7
 
 # Benchmark setup :
 
