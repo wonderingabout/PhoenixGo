@@ -221,7 +221,7 @@ For windows, see [FAQ question syntax error](https://github.com/Tencent/PhoenixG
 
 #### 1. I am getting errors during bazel configure, bazel building, and/or running PhoenixGo engine
 
-If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](https://github.com/Tencent/PhoenixGo/wiki/Install-cuda-and-do-bazel-configuration)
+If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](https://github.com/Tencent/PhoenixGo/blob/master/README-path.md)
 
 If you are still getting erros, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
 
