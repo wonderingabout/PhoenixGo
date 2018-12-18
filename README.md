@@ -261,7 +261,7 @@ each move will cost constant time/simulations.
 
 GPU is much faster to compute than CPU (but only nvidia GPU are supported)
 
-TensorRT also increases significantly the speed of computation
+TensorRT also increases significantly the speed of computation, but it is only available for linux with a compatible nvidia GPU
 
 Bigger batch size significantly increases the speed of the computation, but a bigger batch size puts a bigger burden on the computation device (in case it is the GPU, higher GPU load, higher VRAM usage), increase it only if your computation device can handle it
 
