@@ -39,7 +39,7 @@ same as this screenshot
 
 ![bashrc](https://raw.githubusercontent.com/wonderingabout/nvidia-archives/master/nano-bashrc.png)
 
-With nano, after editing is finished, save and exit with `Ctrl+X` + `y` + press ENTER key.
+With nano, after editing is finished, save and exit with `Ctrl+X` + then press `y` + then press ENTER key.
 
 Now update bashrc file :
 
@@ -115,7 +115,7 @@ Reboot your computer to finalize.
 Press ENTER for every prompt to choose default settings (or `n` if you dont want a setting), except for these : 
 
 - CUDA : choose `y` , version `9.0`, and custom cuda path `/usr/local/cuda-9.0/`
-- cudnn : choose version `7.1` and custom cudnn path `/usr/lib/x86_64-linux-gnu/`
+- cudnn : choose version `7.1.4` and custom cudnn path `/usr/lib/x86_64-linux-gnu/`
 - if you use tensorrt do `y` and press enter to keep default path
 
 same as below :
@@ -128,7 +128,7 @@ Please specify the CUDA SDK version you want to use, e.g. 7.0. [Leave empty to d
 
 Please specify the location where CUDA 9.0 toolkit is installed. Refer to README.md for more details. [Default is /usr/local/cuda]: /usr/local/cuda-9.0/
 
-Please specify the cuDNN version you want to use. [Leave empty to default to cuDNN 7.0]: 7.1
+Please specify the cuDNN version you want to use. [Leave empty to default to cuDNN 7.0]: 7.1.4
 
 Please specify the location where cuDNN 7 library is installed. Refer to README.md for more details. [Default is /usr/local/cuda-9.0/]: /usr/lib/x86_64-linux-gnu/
 
