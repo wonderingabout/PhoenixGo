@@ -11,6 +11,7 @@ cp -r /usr/src/cudnn_samples_v7/ ~ && cd ~/cudnn_samples_v7/mnistCUDNN && make c
 ```
 
 should display this : `Test passed!`
+
 Then, after cuda 9.0 deb install and cudnn 7.1.4 deb are installed successfully, one post install step is needed : add the path to cuda-9.0.
 
 ### 1) post-install : do the path exports
