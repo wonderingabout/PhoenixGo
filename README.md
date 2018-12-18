@@ -52,10 +52,8 @@ It is easier to use and should work on most linux distributions (has been tested
 
 Run the all-in one command below :
 
-
 ```
 sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && echo 'export PATH="$PATH:$HOME/bin"' >> ~/.bashrc && source ~/.bashrc && sudo ldconfig && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz
-
 ```
 
 Press ENTER for default settings, except the path that need to be modified. After the building is a success, continue reading at [Running](https://github.com/Tencent/PhoenixGo#running)
@@ -190,7 +188,6 @@ Options for async distribute mode:
 * `num_eval_threads`: should equal to number of `dist_svr_addrs` lines
 * `eval_task_queue_size`: tunning depend on number of distribute workers
 * `num_search_threads`: tunning depend on number of distribute workers
-
 
 Read `mcts/mcts_config.proto` for more config options.
 
@@ -349,4 +346,3 @@ model_config {
     tensorrt_model_path: "/home/amd2018/test/PhoenixGo/ckpt/zero.ckpt-20b-v1.FP32.PLAN"
 }
 ```
-
