@@ -14,12 +14,12 @@ should display this : `Test passed!`
 
 Then, after cuda 9.0 deb install and cudnn 7.1.4 deb are installed successfully, one post install step is needed : add the path to cuda-9.0.
 
-### 1) post-install : do the path exports
+## 1) post-install : do the path exports
 
 The `export` command alone adds the path during current boot, but the changes will be lost after reboot.
 This is why we will add paths permanently using `bashrc` (and `/etc/environment` for ubuntu here)
 
-##### bashrc
+### bashrc
 
 open bashrc file :
 
@@ -58,7 +58,7 @@ Built on Fri_Sep__1_21:08:03_CDT_2017
 Cuda compilation tools, release 9.0, V9.0.176
 ```
 
-##### etc/environment (ubuntu)
+### etc/environment (ubuntu)
 
 for ubuntu users, it is also recommended to add path in /etc/environment :
 
@@ -89,7 +89,7 @@ GCC version:  gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.10)
 
 If you need help of how to install the deb files of cuda 9.0, cudnn 7.1.4, and tensorrt 3.0.4 for ubuntu 16.04, you can go here [@wonderingabout](https://github.com/wonderingabout/nvidia-archives)
 
-### 2) locate cuda and cudnn paths, and update database if not here
+## 2) locate cuda and cudnn paths, and update database if not here
 
 Run this command : `locate libcudart.so && locate libcudnn.so.7`
 
@@ -110,7 +110,7 @@ If you don't see this, run this command :
 It should now display all the cuda and cudnn paths same as above.
 Reboot your computer to finalize.
 
-### 3) during bazel compile, this is the paths you need to put
+## 3) during bazel compile, this is the paths you need to put
 
 Press ENTER for every prompt to choose default settings (or `n` if you dont want a setting), except for these : 
 
