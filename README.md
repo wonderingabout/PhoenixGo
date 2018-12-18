@@ -3,7 +3,7 @@
 **PhoenixGo** is a Go AI program which implements the AlphaGo Zero paper
 "[Mastering the game of Go without human knowledge](https://deepmind.com/documents/119/agz_unformatted_nature.pdf)".
 It is also known as "BensonDarr" and "金毛测试" in [FoxGo](http://weiqi.qq.com/), "cronus" in [CGOS](http://www.yss-aya.com/cgos/),
-and the champion of "World AI Go Tournament 2018" held in Fuzhou China.
+and the champion of [World AI Go Tournament 2018](http://weiqi.qq.com/special/109) held in Fuzhou China.
 
 If you use PhoenixGo in your project, please consider mentioning in your README.
 
@@ -221,7 +221,7 @@ For windows, see [FAQ question syntax error](https://github.com/Tencent/PhoenixG
 
 #### 1. I am getting errors during bazel configure, bazel building, and/or running PhoenixGo engine
 
-If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](https://github.com/Tencent/PhoenixGo/blob/master/README-wiki-path.md)
+If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](https://github.com/Tencent/PhoenixGo/blob/master/docs/path-errors.md)
 
 If you are still getting erros, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
 
@@ -267,7 +267,7 @@ Bigger batch size significantly increases the speed of the computation, but a bi
 
 Some independent speed benchmarks have been run, they are available in the docs :
 
-- for GTX 1060 :  [benchmark testing batch size from 4 to 64, tree size up to 2000M, max children up to 512](https://github.com/Tencent/PhoenixGo/blob/master/docs/benchmark-gtx1060.md)
+- for GTX 1060 :  [benchmark testing batch size from 4 to 64, tree size up to 2000M, max children up to 512, with tensorRT ON and OFF](https://github.com/Tencent/PhoenixGo/blob/master/docs/benchmark-gtx1060.md)
 
 #### 8. I cannot increase batch size to more than 4 with TensorRT : errors
 
