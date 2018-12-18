@@ -220,7 +220,7 @@ For windows, see [FAQ question syntax error](https://github.com/Tencent/PhoenixG
 
 If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](https://github.com/Tencent/PhoenixGo/blob/master/docs/path-errors.md)
 
-If you are still getting erros, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
+If you are still getting errors, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
 
 #### 2. Where is the win rate?
 
