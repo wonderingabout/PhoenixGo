@@ -35,6 +35,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
 ```
 
 same as this screenshot
+
 ![bashrc](https://raw.githubusercontent.com/wonderingabout/nvidia-archives/master/nano-bashrc.png)
 
 With nano, after editing is finished, save and exit with `Ctrl+X` + `y` + press ENTER key.
@@ -75,7 +76,6 @@ then save and exit nano.
 Reboot to finalize the installation of cuda and cudnn, as well as the add in /etc/environment
 
 `sudo reboot`
-
 
 After reboot, in addition to `nvcc --version`, you can also check if cuda installation is a success with `cat /proc/driver/nvidia/version`
 
