@@ -34,7 +34,7 @@ Other versions may work, but they have not been tested (especially for bazel), t
 
 Recommendation : the bazel building uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all running programs, to free as much RAM as possible.
 
-If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question : building and running errors](https://github.com/Tencent/PhoenixGo/#1-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine)
+If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question : building and running errors](#1-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine)
 
 You have 2 possibilities for building on linux :
 
@@ -56,7 +56,7 @@ Run the all-in one command below :
 sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && echo 'export PATH="$PATH:$HOME/bin"' >> ~/.bashrc && source ~/.bashrc && sudo ldconfig && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz
 ```
 
-Press ENTER for default settings, except the path that need to be modified. After the building is a success, continue reading at [Running](https://github.com/Tencent/PhoenixGo#running)
+Press ENTER for default settings, except the path that need to be modified. After the building is a success, continue reading at [Running](#running)
 
 #### Possibility B : manual way for more advanced users
 
@@ -98,10 +98,10 @@ You could also use a customized config by running `scripts/start.sh {config_path
 See also [#configure-guide](#configure-guide).
 
 Furthermore, if you want to fully control all the options of `mcts_main` (such as, changing log destination),
-you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options). See also [FAQ question](https://github.com/Tencent/PhoenixGo/#13-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
+you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options). See also [FAQ question](#13-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
 
 The engine supports the GTP protocol, means it could be used with a GUI with GTP capability,
-such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](https://github.com/Tencent/PhoenixGo/#10-gtp-command-error--invalid-command)
+such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](#10-gtp-command-error--invalid-command)
 
 #### (Optional) : Distribute mode
 
@@ -132,7 +132,7 @@ $ scripts/start.sh etc/mcts_dist.conf
 
 #### Use Pre-built Binary
 
-Download and extract https://github.com/Tencent/PhoenixGo/releases/download/mac-x64-cpuonly-v1/PhoenixGo-mac-x64-cpuonly-v1.tgz
+Download and extract [CPU-only version (macOS)](https://github.com/Tencent/PhoenixGo/releases/download/mac-x64-cpuonly-v1/PhoenixGo-mac-x64-cpuonly-v1.tgz)
 
 Follow the document: using_phoenixgo_on_mac.pdf
 
@@ -144,9 +144,9 @@ Same as Linux.
 
 #### Use Pre-built Binary
 
-Download and extract https://github.com/Tencent/PhoenixGo/releases/download/win-x64-gpu-v1/PhoenixGo-win-x64-gpu-v1.zip
+Download and extract [GPU version (Windows)](https://github.com/Tencent/PhoenixGo/releases/download/win-x64-gpu-v1/PhoenixGo-win-x64-gpu-v1.zip)
 
-Or CPU-only version https://github.com/Tencent/PhoenixGo/releases/download/win-x64-cpuonly-v1/PhoenixGo-win-x64-cpuonly-v1.zip
+Or [CPU-only version (Windows)](https://github.com/Tencent/PhoenixGo/releases/download/win-x64-cpuonly-v1/PhoenixGo-win-x64-cpuonly-v1.zip)
 
 Follow the document: how to install phoenixgo.pdf
 
@@ -212,13 +212,13 @@ Glog options are also supported:
 
 `mcts_main --help` for more command line options.
 
-For windows, see [FAQ question syntax error](https://github.com/Tencent/PhoenixGo/#12-syntax-error-windows)
+For windows, see [FAQ question syntax error](#12-syntax-error-windows)
 
 ## FAQ
 
 #### 1. I am getting errors during bazel configure, bazel building, and/or running PhoenixGo engine
 
-If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](https://github.com/Tencent/PhoenixGo/blob/master/docs/path-errors.md)
+If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](/docs/path-errors.md)
 
 If you are still getting errors, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
 
@@ -264,11 +264,11 @@ Bigger batch size significantly increases the speed of the computation, but a bi
 
 Some independent speed benchmarks have been run, they are available in the docs :
 
-- for GTX 1060 :  [benchmark testing batch size from 4 to 64, tree size up to 2000M, max children up to 512, with tensorRT ON and OFF](https://github.com/Tencent/PhoenixGo/blob/master/docs/benchmark-gtx1060.md)
+- for GTX 1060 :  [benchmark testing batch size from 4 to 64, tree size up to 2000M, max children up to 512, with tensorRT ON and OFF](/docs/benchmark-gtx1060.md)
 
 #### 8. I cannot increase batch size to more than 4 with TensorRT : errors
 
-Increasing batch size in the config file makes the engine compute faster, as explained earlier in [FAQ question](https://github.com/Tencent/PhoenixGo/#7-what-is-the-speed-of-the-engine--how-can-i-make-the-engine-think-faster-)
+Increasing batch size in the config file makes the engine compute faster, as explained earlier in [FAQ question](#7-what-is-the-speed-of-the-engine--how-can-i-make-the-engine-think-faster-)
 
 However, with default building, you cannot use batch size higher than 4 with tensorRT
 To increase batch size for example to 32 with tensorRT enabled, you need to build tensorrt model with bazel, See : [#75](https://github.com/Tencent/PhoenixGo/issues/75)
@@ -299,7 +299,11 @@ For example, for [gtp2ogs](https://github.com/online-go/gtp2ogs) server command 
 
 With the default settings, the only komi value supported is only 7.5, with chinese rules only. If it is not automated, you need to manually set komi value to 7.5 with chinese rules.
 
-information : the BensonDarr on [FoxGo](http://weiqi.qq.com/) server is able to play with 6.5 komi because it has been modified, but this is not true for the PhoenixGo engine provided here.
+If you want to implement PhoenixGo to a server where players play with different komi values (for example 6.5, 0.5, 85.5, 200.5,etc), it is possible to make PhoenixGo play the game if you configure you GTP tool to tell PhoenixGo engine that the komi for the game is 7.5 even if it is not true : 
+
+if you do that, the game will not be scored correctly because PhoenixGo will think that the komi is 7.5 while the real komi is different, but at least PhoenixGo will be able to play the game. An example for gtp2ogs is provided [here in parts 3A4) and 3B5)](https://docs.google.com/document/d/1BsZq980zOX02g34ElwOo3Ec1BiD7tGZYZQfKF73GGUU/edit?usp=sharing)
+
+information : the BensonDarr on [FoxGo server](http://weiqi.qq.com/) is able to play with 6.5 komi because it has been modified, but this is not true for the PhoenixGo engine provided here.
 
 #### 12. Syntax error (Windows)
 
