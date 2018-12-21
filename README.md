@@ -301,7 +301,7 @@ With the default settings, the only komi value supported is only 7.5, with chine
 
 If you want to implement PhoenixGo to a server where players play with different komi values (for example 6.5, 0.5, 85.5, 200.5,etc), it is possible to make PhoenixGo play the game if you configure you GTP tool to tell PhoenixGo engine that the komi for the game is 7.5 even if it is not true : 
 
-if you do that, the game will not be scored correctly because PhoenixGo will think that the komi is 7.5 while the real komi is different, but at least PhoenixGo will be able to play the game. An example for gtp2ogs is provided [here in parts 3A4) and 3B5)](https://docs.google.com/document/d/1BsZq980zOX02g34ElwOo3Ec1BiD7tGZYZQfKF73GGUU/edit?usp=sharing)
+if you do that, the game will not be scored correctly because PhoenixGo will think that the komi is 7.5 while the real komi is different, but at least PhoenixGo will be able to play the game. An example for gtp2ogs is provided [here in parts 3A4) and 3B4)](https://docs.google.com/document/d/1BsZq980zOX02g34ElwOo3Ec1BiD7tGZYZQfKF73GGUU/edit?usp=sharing) and [here](https://github.com/wonderingabout/gtp2ogs-tutorial)
 
 information : the BensonDarr on [FoxGo server](http://weiqi.qq.com/) is able to play with 6.5 komi because it has been modified, but this is not true for the PhoenixGo engine provided here.
 
