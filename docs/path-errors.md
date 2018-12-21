@@ -37,7 +37,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
 
 same as this screenshot
 
-![bashrc](https://raw.githubusercontent.com/wonderingabout/nvidia-archives/master/nano-bashrc.png)
+![bashrc](https://github.com/wonderingabout/nvidia-archives/blob/master/pictures/nano-bashrc.png?raw=true)
 
 With nano, after editing is finished, save and exit with `Ctrl+X` + then press `y` + then press ENTER key.
 
@@ -70,7 +70,7 @@ add this part in the paths (with the `:`) at the end of the file
 
 same as the screenshot below :
 
-![etc-environment](https://github.com/wonderingabout/nvidia-archives/blob/master/nano-etc-environment.png)
+![etc-environment](https://github.com/wonderingabout/nvidia-archives/blob/master/pictures/nano-etc-environment.png?raw=true)
 
 then save and exit nano.
 
