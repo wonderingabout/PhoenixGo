@@ -30,13 +30,13 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 * (Optional) CUDA (9.0 is known good) and cuDNN (7.0.5 is known good) for GPU support 
 * (Optional) TensorRT (for accelerating computation on GPU, 3.0.4 is known-good)
 
-The following environments have been tested by an independent contributor to also work : cuda 9.0 , cudnn 7.1.4 , tensorrt 4.x.x.x , bazel 0.18.1)
+The following environment has also been tested to work by an independent contributor : (cuda 9.0 (deb), cudnn 7.0.5 (deb), tensorrt 3.0.4 (tar), bazel 0.18.1)
 
 Other versions may work, but they have not been tested (especially for bazel), try and see. 
 
 Recommendation : the bazel building uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all running programs, to free as much RAM as possible.
 
-If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question : building and running errors](#1-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine)
+If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question : building and running errors](#12-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine)
 
 You have 2 possibilities for building on linux :
 
@@ -100,10 +100,10 @@ You could also use a customized config by running `scripts/start.sh {config_path
 See also [#configure-guide](#configure-guide).
 
 Furthermore, if you want to fully control all the options of `mcts_main` (such as, changing log destination),
-you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options). See also [FAQ question](#13-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
+you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options). See also [FAQ question](#11-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
 
 The engine supports the GTP protocol, means it could be used with a GUI with GTP capability,
-such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](#10-gtp-command-error--invalid-command)
+such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](#8-gtp-command-error--invalid-command)
 
 #### (Optional) : Distribute mode
 
@@ -136,7 +136,7 @@ $ scripts/start.sh etc/mcts_dist.conf
 
 Download and extract [CPU-only version (macOS)](https://github.com/Tencent/PhoenixGo/releases/download/mac-x64-cpuonly-v1/PhoenixGo-mac-x64-cpuonly-v1.tgz)
 
-Follow the document: using_phoenixgo_on_mac.pdf
+Follow the document included in the archive : using_phoenixgo_on_mac.pdf
 
 #### Building from Source
 
@@ -150,7 +150,7 @@ Download and extract [GPU version (Windows)](https://github.com/Tencent/PhoenixG
 
 Or [CPU-only version (Windows)](https://github.com/Tencent/PhoenixGo/releases/download/win-x64-cpuonly-v1/PhoenixGo-win-x64-cpuonly-v1.zip)
 
-Follow the document: how to install phoenixgo.pdf
+Follow the document included in the archive : how to install phoenixgo.pdf
 
 ## Configure Guide
 
@@ -214,17 +214,13 @@ Glog options are also supported:
 
 `mcts_main --help` for more command line options.
 
-For windows, see [FAQ question syntax error](#12-syntax-error-windows)
+For windows, see [FAQ question syntax error](#10-syntax-error-windows)
 
 ## FAQ
 
-#### 1. I am getting errors during bazel configure, bazel building, and/or running PhoenixGo engine
+### General Questions (windows/mac/linux):
 
-If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](/docs/path-errors.md)
-
-If you are still getting errors, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
-
-#### 2. Where is the win rate?
+#### 1. Where is the win rate?
 
 Print in the log, something like:
 
@@ -232,7 +228,7 @@ Print in the log, something like:
 I0514 12:51:32.724236 14467 mcts_engine.cc:157] 1th move(b): dp, <b>winrate=44.110905%</b>, N=654, Q=-0.117782, p=0.079232, v=-0.116534, cost 39042.679688ms, sims=7132, height=11, avg_height=5.782244, global_step=639200
 </pre>
 
-#### 3. There are too much log.
+#### 2. There are too much log.
 
 Passing `--v=0` to `mcts_main` will turn off many debug log.
 Moreover, `--minloglevel=1` and `--minloglevel=2` could disable INFO log and WARNING log.
@@ -240,23 +236,23 @@ Moreover, `--minloglevel=1` and `--minloglevel=2` could disable INFO log and WAR
 Or, if you just don't want to log to stderr, replace `--logtostderr` to `--log_dir={log_dir}`,
 then you could read your log from `{log_dir}/mcts_main.INFO`.
 
-#### 4. How to run with Sabaki?
+#### 3. How to run with Sabaki?
 
 Setting GTP engine in Sabaki's menu: `Engines -> Manage Engines`, fill `Path` with path of `start.sh`.
 Click `Engines -> Attach` to use the engine in your game.
 See also [#22](https://github.com/Tencent/PhoenixGo/issues/22).
 
-#### 5. How make PhoenixGo think with longer/shorter time?
+#### 4. How make PhoenixGo think with longer/shorter time?
 
 Modify `timeout_ms_per_step` in your config file.
 
-#### 6. How make PhoenixGo think with constant time per move?
+#### 5. How make PhoenixGo think with constant time per move?
 
 Modify your config file. `early_stop`, `unstable_overtime`, `behind_overtime` and
 `time_control` are options that affect the search time, remove them if exist then
 each move will cost constant time/simulations.
 
-#### 7. What is the speed of the engine ? How can i make the engine think faster ?
+#### 6. What is the speed of the engine ? How can i make the engine think faster ?
 
 GPU is much faster to compute than CPU (but only nvidia GPU are supported)
 
@@ -268,14 +264,7 @@ Some independent speed benchmarks have been run, they are available in the docs 
 
 - for GTX 1060 :  [benchmark testing batch size from 4 to 64, tree size up to 2000M, max children up to 512, with tensorRT ON and OFF](/docs/benchmark-gtx1060.md)
 
-#### 8. I cannot increase batch size to more than 4 with TensorRT : errors
-
-Increasing batch size in the config file makes the engine compute faster, as explained earlier in [FAQ question](#7-what-is-the-speed-of-the-engine--how-can-i-make-the-engine-think-faster-)
-
-However, with default building, you cannot use batch size higher than 4 with tensorRT
-To increase batch size for example to 32 with tensorRT enabled, you need to build tensorrt model with bazel, See : [#75](https://github.com/Tencent/PhoenixGo/issues/75)
-
-#### 9. GTP command `time_settings` doesn't work.
+#### 7. GTP command `time_settings` doesn't work.
 
 Add these lines in your config:
 
@@ -291,13 +280,13 @@ time_control {
 `c_denom` and `c_maxply` are parameters for deciding how to use the "main time".
 `reserved_time` is how many seconds should reserved (for network latency) in "byo-yomi time".
 
-#### 10. GTP command error : `invalid command`
+#### 8. GTP command error : `invalid command`
 
 Some GTP commands are not supported by PhoenixGo, for example the `showboard` command. Using unsupported commands will most likely make the engine not work. Make sure your GTP tool does not communicate with PhoenixGo with unsupported GTP commands.
 
 For example, for [gtp2ogs](https://github.com/online-go/gtp2ogs) server command line GTP tool, you need to edit the file gtp2ogs.js and manually remove the `showboard` line if it is not already done, [see](https://github.com/online-go/gtp2ogs/commit/d5ebdbbde259a97c5ae1aed0ec42a07c9fbb2dbf)
 
-#### 11. The game does not start, error : `unacceptable komi`
+#### 9. The game does not start, error : `unacceptable komi`
 
 With the default settings, the only komi value supported is only 7.5, with chinese rules only. If it is not automated, you need to manually set komi value to 7.5 with chinese rules.
 
@@ -309,7 +298,7 @@ if you do that, the game will not be scored correctly because PhoenixGo will thi
 
 information : the BensonDarr on [FoxGo server](http://weiqi.qq.com/) is able to play with 6.5 komi because it has been modified, but this is not true for the PhoenixGo engine provided here.
 
-#### 12. Syntax error (Windows)
+#### 10. Syntax error (Windows)
 
 For windows,
 - in config file, 
@@ -329,7 +318,7 @@ Here you need to write paths with `\` and not `/`. Also command format on window
 
 See next point below :
 
-#### 13. '"ckpt/zero.ckpt-20b-v1.FP32.PLAN"' error: No such file or directory
+#### 11. '"ckpt/zero.ckpt-20b-v1.FP32.PLAN"' error: No such file or directory
 
 This fix works for all systems : Linux, Mac, Windows, only the name of the ckpt file changes. Modify your config file and write the full path of your ckpt folder, for example for linux : 
 
@@ -354,3 +343,25 @@ model_config {
     tensorrt_model_path: "/home/amd2018/test/PhoenixGo/ckpt/zero.ckpt-20b-v1.FP32.PLAN"
 }
 ```
+
+### Specific questions : building with bazel questions (linux and mac)
+
+#### 12. I am getting errors during bazel configure, bazel building, and/or running PhoenixGo engine
+
+If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](/docs/path-errors.md)
+
+If you are still getting errors, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
+
+#### 13. I cannot increase batch size to more than 4 with TensorRT (linux only) : errors
+
+Increasing batch size in the config file makes the engine compute faster, as explained earlier in [FAQ question](#6-what-is-the-speed-of-the-engine--how-can-i-make-the-engine-think-faster-)
+
+However, with default building, you cannot use batch size higher than 4 with tensorRT
+To increase batch size for example to 32 with tensorRT enabled, you need to build tensorrt model with bazel, See : [#75](https://github.com/Tencent/PhoenixGo/issues/75)
+
+#### 14. The PhoenixGo and bazel folders are too big
+
+During the bazel building, there are many options that can are not required and can be disabled
+
+This will reduce building time and size after the install, see [minimalist install](/docs/minimalist-bazel-install.md) and [#76](https://github.com/Tencent/PhoenixGo/issues/76)
+
