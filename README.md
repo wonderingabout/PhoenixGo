@@ -26,9 +26,11 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 #### Requirements
 
 * GCC with C++11 support
-* Bazel (**0.11.1 is known-good**, 0.17.2 has been tested by an independent contributor to also work)
-* (Optional) CUDA (9.0 is known good) and cuDNN (7.0.5 and 7.1.4 are known good) for GPU support 
+* Bazel (**0.11.1 is known-good**)
+* (Optional) CUDA (9.0 is known good) and cuDNN (7.0.5 is known good) for GPU support 
 * (Optional) TensorRT (for accelerating computation on GPU, 3.0.4 is known-good)
+
+The following environments have been tested by an independent contributor to also work : cuda 9.0 , cudnn 7.1.4 , tensorrt 4.x.x.x , bazel 0.18.1)
 
 Other versions may work, but they have not been tested (especially for bazel), try and see. 
 
