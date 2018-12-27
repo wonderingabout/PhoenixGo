@@ -54,7 +54,7 @@ It is easier to use and should work on most linux distributions (has been tested
 Run the all-in one command below :
 
 ```
-sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && echo 'export PATH="$PATH:$HOME/bin"' >> ~/.bashrc && source ~/.bashrc && sudo ldconfig && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz && sudo rm -r trained-network-20b-v1.tar.gz && sudo rm -r bazel-0.11.1-installer-linux-x86_64.sh && ls
+sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && echo 'export PATH="$PATH:$HOME/bin"' >> ~/.bashrc && source ~/.bashrc && sudo ldconfig && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz && sudo rm -r trained-network-20b-v1.tar.gz && sudo rm -r bazel-0.11.1-installer-linux-x86_64.sh && ./configure && bazel build //mcts:mcts_main && ls
 ```
 
 Press ENTER for default settings, except the path that need to be modified. After the building is a success, continue reading at [Running](#running)
@@ -322,7 +322,7 @@ See next point below :
 
 #### 11. '"ckpt/zero.ckpt-20b-v1.FP32.PLAN"' error: No such file or directory
 
-This fix works for all systems : Linux, Mac, Windows, only the name of the ckpt file changes. Modify your config file and write the full path of your ckpt folder, for example for linux : 
+This fix works for all systems : Linux, Mac, Windows, only the name of the ckpt file changes. Modify your config file and write the full path of your ckpt directory, for example for linux : 
 
 ```
 model_config {
@@ -367,14 +367,16 @@ During the bazel building, there are many options that can are not required and 
 
 This will reduce building time and size after the install, see [minimalist install](/docs/minimalist-bazel-install.md) and [#76](https://github.com/Tencent/PhoenixGo/issues/76)
 
-#### 15. How to remove entirely all PhoenixGo and bazel folders ?
+#### 15. How to remove entirely all PhoenixGo and bazel files and folders ?
 
-assuming you installed PhoenixGo in home folder (`~` or `/home/yourusername/`)
+assuming you installed PhoenixGo in home directory (`~` or `/home/yourusername/`)
 
 ```
-# remove PhoenixGo local folder
-sudo rm -rf ~/PhoenixGo 
-# remove bazel installation folder 
+# clean with bazel
+cd ~/PhoenixGo && bazel clean
+# remove PhoenixGo local directory
+sudo rm -rf ~/PhoenixGo
+# remove any remaining bazel file
 sudo rm -rf ~/.cache/bazel
 ```
 This will free a few GB (arround 3-6 GB depending on your installation settings)
