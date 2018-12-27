@@ -30,9 +30,7 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 * (Optional) CUDA (9.0 is known good) and cuDNN (7.0.5 is known good) for GPU support 
 * (Optional) TensorRT (for accelerating computation on GPU, 3.0.4 is known-good)
 
-The following environments have also been tested by independent contributors : [here](/docs/tested-versions.md)
-
-Other versions may work, but they have not been tested (especially for bazel), try and see. 
+The following environments have also been tested by independent contributors : [here](/docs/tested-versions.md). Other versions may work, but they have not been tested (especially for bazel), try and see. 
 
 Recommendation : the bazel building uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all running programs, to free as much RAM as possible.
 
@@ -40,7 +38,7 @@ If you encounter errors during bazel configure, bazel building, or during the ru
 
 You have 2 possibilities for building on linux :
 
-#### Possibility A : if you want the easy way, Automatic all in command
+#### Possibility A : (easy) Automatic all in command
 
 This all in one command includes : 
 - Download and install bazel and dependencies
@@ -48,28 +46,29 @@ This all in one command includes :
 - Configure the build : 
 `./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if needed.
 - Building with bazel : this may take long time (1 hour or more)
-- Download the trained network (ckpt)
+- Download and extract the trained network (ckpt) archive
+- Cleanup : remove the trained network archive and the bazel installer
 
-It is easier to use and should work on most linux distributions (has been tested successfully on ubuntu 16.04 LTS for example)
+It is easier to use and should work on most linux distributions (has been tested successfully on ubuntu 16.04 and 18.04 LTS for example)
 
 Run the all-in one command below :
 
 ```
-sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && echo 'export PATH="$PATH:$HOME/bin"' >> ~/.bashrc && source ~/.bashrc && sudo ldconfig && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz
+sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && echo 'export PATH="$PATH:$HOME/bin"' >> ~/.bashrc && source ~/.bashrc && sudo ldconfig && ./configure && bazel build //mcts:mcts_main && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz && sudo rm -r trained-network-20b-v1.tar.gz && sudo rm -r bazel-0.11.1-installer-linux-x86_64.sh && ls
 ```
 
 Press ENTER for default settings, except the path that need to be modified. After the building is a success, continue reading at [Running](#running)
 
-#### Possibility B : manual way for more advanced users
+#### Possibility B : (harder) manual way for more advanced users
 
 ##### Building
 
 Clone the repository and configure the building:
 
 ```
-$ git clone https://github.com/Tencent/PhoenixGo.git
-$ cd PhoenixGo
-$ ./configure
+git clone https://github.com/Tencent/PhoenixGo.git
+cd PhoenixGo
+./configure
 ```
 
 `./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if needed.
@@ -77,19 +76,22 @@ $ ./configure
 Then build with bazel:
 
 ```
-$ bazel build //mcts:mcts_main
+bazel build //mcts:mcts_main
 ```
 
 Dependices such as Tensorflow will be downloaded automatically. The building prosess may take a long time (1 hour or more).
 
 ##### Downloading the trained network (ckpt)
 
-Download and extract the trained network :
+Download and extract the trained network archive, then remove the archive to cleanup :
 
 ```
-$ wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz
-$ tar xvzf trained-network-20b-v1.tar.gz
+wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz
+tar xvzf trained-network-20b-v1.tar.gz
+sudo rm -r trained-network-20b-v1.tar.gz
 ```
+
+note : if you installed bazel with a .sh installer, you can also remove the bazel installer file to cleanup
 
 #### Running 
 
@@ -112,20 +114,20 @@ PhoenixGo support running with distributed workers, if there are GPUs on differe
 Build the distribute worker:
 
 ```
-$ bazel build //dist:dist_zero_model_server
+bazel build //dist:dist_zero_model_server
 ```
 
 Run `dist_zero_model_server` on distributed worker, **one for each GPU**.
 
 ```
-$ CUDA_VISIBLE_DEVICES={gpu} bazel-bin/dist/dist_zero_model_server --server_address="0.0.0.0:{port}" --logtostderr
+CUDA_VISIBLE_DEVICES={gpu} bazel-bin/dist/dist_zero_model_server --server_address="0.0.0.0:{port}" --logtostderr
 ```
 
 Fill `ip:port` of workers in the config file (`etc/mcts_dist.conf` is an example config for 32 workers),
 and run the distributed master:
 
 ```
-$ scripts/start.sh etc/mcts_dist.conf
+scripts/start.sh etc/mcts_dist.conf
 ```
 
 ### On macOS
@@ -365,3 +367,14 @@ During the bazel building, there are many options that can are not required and 
 
 This will reduce building time and size after the install, see [minimalist install](/docs/minimalist-bazel-install.md) and [#76](https://github.com/Tencent/PhoenixGo/issues/76)
 
+#### 15. How to remove entirely all PhoenixGo and bazel folders ?
+
+assuming you installed PhoenixGo in home folder (`~` or `/home/yourusername/`)
+
+```
+# remove PhoenixGo local folder
+sudo rm -rf ~/PhoenixGo 
+# remove bazel installation folder 
+sudo rm -rf ~/.cache/bazel
+```
+This will free a few GB (arround 3-6 GB depending on your installation settings)
