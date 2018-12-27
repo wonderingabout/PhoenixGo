@@ -22,10 +22,8 @@ you need to add the lines below at the end of the bashrc file (using nano, or th
 ```
 # add paths for cuda-9.0
 export PATH=${PATH}:/usr/local/cuda-9.0/bin
-export CUDA_HOME=${CUDA_HOME}:/usr/local/cuda:/usr/local/cuda-9.0
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-9.0/lib64
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
 
+# in case you use tensorrt tar install 
 # add paths for cuda and cudnn install paths
 export CUDA_INSTALL_DIR=/usr/local/cuda
 export CUDNN_INSTALL_DIR=/usr/local/cuda
