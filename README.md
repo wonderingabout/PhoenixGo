@@ -30,7 +30,7 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 * (Optional) CUDA (9.0 is known good) and cuDNN (7.0.5 is known good) for GPU support 
 * (Optional) TensorRT (for accelerating computation on GPU, 3.0.4 is known-good)
 
-The following environment has also been tested to work by an independent contributor : (cuda 9.0 (deb), cudnn 7.0.5 (deb), tensorrt 3.0.4 (tar), bazel 0.18.1)
+The following environments have also been tested by independent contributors : [here](/docs/tested-versions.md)
 
 Other versions may work, but they have not been tested (especially for bazel), try and see. 
 
