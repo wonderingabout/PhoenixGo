@@ -27,7 +27,7 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 
 * GCC with C++11 support
 * Bazel (**0.11.1 is known-good**)
-* (Optional) CUDA (9.0 is known good) and cuDNN (7.0.5 is known good) for GPU support 
+* (Optional) CUDA and cuDNN for GPU support 
 * (Optional) TensorRT (for accelerating computation on GPU, 3.0.4 is known-good)
 
 The following environments have also been tested by independent contributors : [here](/docs/tested-versions.md). Other versions may work, but they have not been tested (especially for bazel), try and see. 
@@ -149,6 +149,8 @@ Same as Linux.
 #### Use Pre-built Binary
 
 Download and extract [GPU version (Windows)](https://github.com/Tencent/PhoenixGo/releases/download/win-x64-gpu-v1/PhoenixGo-win-x64-gpu-v1.zip)
+
+Note : there is no TensorRT support on Windows
 
 Or [CPU-only version (Windows)](https://github.com/Tencent/PhoenixGo/releases/download/win-x64-cpuonly-v1/PhoenixGo-win-x64-cpuonly-v1.zip)
 
@@ -380,3 +382,9 @@ sudo rm -rf ~/PhoenixGo
 sudo rm -rf ~/.cache/bazel
 ```
 This will free a few GB (arround 3-6 GB depending on your installation settings)
+
+#### 16. I have a nvidia RTX card (Turing), is it compatible ?
+
+PhoenixGo is compatible with the latest nvidia RTX cards (Turing) because CUDA 10.0 has been tested to work [here](/docs/tested-versions.md), for all operating systems compatible with software GPU support.
+
+However currently there is no tensorRT support (RTX cards require tensorRT 5.x or more (and this also requires tensorflow 1.9 or more), which is currently not supported by PhoenixGo)
