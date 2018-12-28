@@ -46,8 +46,8 @@ This all in one command includes :
 - Configure the build : during `./configure` , bazel will ask building options
 and where CUDA, cuDNN, and TensorRT have been installed -> Press ENTER for default
 settings and choose the building options you want, and modify paths if needed 
-(see [FAQ question](#12-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) 
-and see[minimalist bazel install](/docs/minimalist-bazel-insall.md) if you need help)
+(see [FAQ question](/README.md/#12-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) 
+and see [minimalist bazel install](/docs/minimalist-bazel-insall.md) if you need help)
 - Build PhoenixGo with bazel : this may take long time (1 hour or more). 
 Dependices such as Tensorflow will be downloaded automatically. 
 The building process may take a long time (1 hour or more).
