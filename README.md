@@ -26,7 +26,7 @@ If you use PhoenixGo in your research, please consider citing the library as fol
 #### Requirements
 
 * GCC with C++11 support
-* Bazel (**0.11.1 is known-good**)
+* [Bazel](https://docs.bazel.build/versions/master/install.html) (**0.11.1 is known-good**)
 * (Optional) CUDA and cuDNN for GPU support 
 * (Optional) TensorRT (for accelerating computation on GPU, 3.0.4 is known-good)
 
@@ -34,22 +34,25 @@ The following environments have also been tested by independent contributors : [
 
 Recommendation : the bazel building uses a lot of RAM, so it is recommended that you restart your computer before you run the below command, and also exit all running programs, to free as much RAM as possible.
 
-If you encounter errors during bazel configure, bazel building, or during the run of `mcts_engine` or `start.sh` (mostly cuda and cudnn path errors), see [FAQ question : building and running errors](#12-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine)
-
 You have 2 possibilities for building on linux :
 
-#### Possibility A : (easy) Automatic all in command
+#### Building - Possibility A : (easy) Automatic all in command for ubuntu
 
 This all in one command includes : 
-- Download and install bazel and dependencies
+- Download and install bazel and its dependencies (apt-get)
 - Clone PhoenixGo from Tencent github
-- Configure the build : 
-`./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if needed.
-- Building with bazel : this may take long time (1 hour or more)
 - Download and extract the trained network (ckpt) archive
-- Cleanup : remove the trained network archive and the bazel installer
+- Cleanup : remove the trained network archive (.tar.gz) and the bazel installer (.sh file)
+- Configure the build : during `./configure` , bazel will ask building options
+and where CUDA, cuDNN, and TensorRT have been installed -> Press ENTER for default
+settings and choose the building options you want, and modify paths if needed 
+(see [FAQ question](#12-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) 
+and see[minimalist bazel install](/docs/minimalist-bazel-insall.md) if you need help)
+- Build PhoenixGo with bazel : this may take long time (1 hour or more). 
+Dependices such as Tensorflow will be downloaded automatically. 
+The building process may take a long time (1 hour or more).
 
-It is easier to use and should work on most linux distributions (has been tested successfully on ubuntu 16.04 and 18.04 LTS for example)
+The command below has been tested successfully on ubuntu 16.04 and 18.04 LTS for example
 
 Run the all-in one command below :
 
@@ -57,41 +60,11 @@ Run the all-in one command below :
 sudo apt-get -y install pkg-config zip g++ zlib1g-dev unzip python git && git clone https://github.com/Tencent/PhoenixGo.git && cd PhoenixGo && wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel-0.11.1-installer-linux-x86_64.sh && chmod +x bazel-0.11.1-installer-linux-x86_64.sh && ./bazel-0.11.1-installer-linux-x86_64.sh --user && echo 'export PATH="$PATH:$HOME/bin"' >> ~/.bashrc && source ~/.bashrc && sudo ldconfig && wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz && tar xvzf trained-network-20b-v1.tar.gz && sudo rm -r trained-network-20b-v1.tar.gz && sudo rm -r bazel-0.11.1-installer-linux-x86_64.sh && ./configure && bazel build //mcts:mcts_main && ls
 ```
 
-Press ENTER for default settings, except the path that need to be modified. After the building is a success, continue reading at [Running](#running)
+After the building is a success, continue reading at [Running](#running)
 
-#### Possibility B : (harder) manual way for more advanced users
+#### Building - Possibility B : manual steps for other use
 
-##### Building
-
-Clone the repository and configure the building:
-
-```
-git clone https://github.com/Tencent/PhoenixGo.git
-cd PhoenixGo
-./configure
-```
-
-`./configure` will ask where CUDA, cuDNN, and TensorRT have been installed, specify them if needed.
-
-Then build with bazel:
-
-```
-bazel build //mcts:mcts_main
-```
-
-Dependices such as Tensorflow will be downloaded automatically. The building prosess may take a long time (1 hour or more).
-
-##### Downloading the trained network (ckpt)
-
-Download and extract the trained network archive, then remove the archive to cleanup :
-
-```
-wget https://github.com/Tencent/PhoenixGo/releases/download/trained-network-20b-v1/trained-network-20b-v1.tar.gz
-tar xvzf trained-network-20b-v1.tar.gz
-sudo rm -r trained-network-20b-v1.tar.gz
-```
-
-note : if you installed bazel with a .sh installer, you can also remove the bazel installer file to cleanup
+for other linux distributions than ubuntu, or for other specific use, see : [manual building](/docs/manual-building.md)
 
 #### Running 
 
