@@ -1,4 +1,4 @@
-continuation of [this]()
+continuation of [this](/README.md/#building---possibility-b--manual-steps-for-other-use)
 
 ##### Manual Building
 
@@ -16,7 +16,7 @@ Configure the build : during `./configure` , bazel will ask building options
 and where CUDA, cuDNN, and TensorRT have been installed -> Press ENTER for default
 settings and choose the building options you want, and modify paths if needed 
 (see [FAQ question](/README.md/#12-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) 
-and see[minimalist bazel install](/docs/minimalist-bazel-insall.md) if you need help)
+and see [minimalist bazel install](/docs/minimalist-bazel-insall.md) if you need help)
 
 Then build PhoenixGo with bazel:
 
