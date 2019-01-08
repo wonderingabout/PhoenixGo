@@ -121,11 +121,24 @@ Same as Linux.
 
 #### Use Pre-built Binary
 
+##### GPU version :
+
+The GPU version is much faster, but works only with compatible nvidia GPU.
+It supports this environment : 
+- CUDA 9.0 only
+- cudnn 7.1.x (x is any number) or lower for CUDA 9.0
+- no AVX, AVX2, AVX512 instructions supported in this release (so it is much slower than the linux version)
+- there is no TensorRT support on Windows
+
 Download and extract [GPU version (Windows)](https://github.com/Tencent/PhoenixGo/releases/download/win-x64-gpu-v1/PhoenixGo-win-x64-gpu-v1.zip)
 
-Note : there is no TensorRT support on Windows
+Then follow the document included in the archive : how to install phoenixgo.pdf
 
-Or [CPU-only version (Windows)](https://github.com/Tencent/PhoenixGo/releases/download/win-x64-cpuonly-v1/PhoenixGo-win-x64-cpuonly-v1.zip)
+note : to support special features like CUDA 10.0 or AVX512 for example, you can compile your own build for windows
+
+##### CPU-only version : 
+
+If your GPU is not compatible, or if you don't want to use a GPU, you can download this [CPU-only version (Windows)](https://github.com/Tencent/PhoenixGo/releases/download/win-x64-cpuonly-v1/PhoenixGo-win-x64-cpuonly-v1.zip), 
 
 Follow the document included in the archive : how to install phoenixgo.pdf
 
