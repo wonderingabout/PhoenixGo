@@ -46,11 +46,13 @@ This all in one command includes :
 - Configure the build : during `./configure` , bazel will ask building options
 and where CUDA, cuDNN, and TensorRT have been installed -> Press ENTER for default
 settings and choose the building options you want, and modify paths if needed 
-(see [FAQ question](/README.md/#12-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) 
-and see [minimalist bazel install](/docs/minimalist-bazel-insall.md) if you need help)
-- Build PhoenixGo with bazel : this may take long time (1 hour or more). 
+(see [FAQ question](/README.md/#12-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) if you need help)
+
+To speed up building and also to reduce build size at the same time, it is recommended to use the minimalist bazel install settings, see : [minimalist bazel install](/docs/minimalist-bazel-insall.md)
+- Build PhoenixGo with bazel :  
 Dependencies such as Tensorflow will be downloaded automatically. 
-The building process may take a long time (1 hour or more).
+
+The building process may take a long time (1 hour or more) : 
 
 The command below has been tested successfully on ubuntu 16.04 and 18.04 LTS for example
 
@@ -68,17 +70,36 @@ for other linux distributions than ubuntu, or for other specific use, see : [man
 
 #### Running 
 
+The PhoenixGo engine supports GTP [(Go Text Protocol)](https://senseis.xmp.net/?GoTextProtocol), which means it can be used with a GUI with GTP capability, such as [Sabaki](http://sabaki.yichuanshen.de).
+It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). 
+
+But PhoenixGo does not support all GTP commands, see [FAQ question](#8-gtp-command-error--invalid-command).
+
+There are 2 ways to run PhoenixGo engine
+
+##### 1) start.sh : easy use
+
 Run the engine : `scripts/start.sh`
 
-`start.sh` will detect the number of GPUs, run `mcts_main` with proper config file, and write log files in directory `log`.
-You could also use a customized config by running `scripts/start.sh {config_path}`.
-See also [#configure-guide](#configure-guide).
+`start.sh` will automatically detect the number of GPUs, run `mcts_main` with proper config file, and write log files in directory `log`.
 
-Furthermore, if you want to fully control all the options of `mcts_main` (such as, changing log destination),
-you could also run `bazel-bin/mcts/mcts_main` directly. See also [#command-line-options](#command-line-options). See also [FAQ question](#11-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
+You could also use a customized config by running `scripts/start.sh {config_path}`. 
+If you want to do that, see also [#configure-guide](#configure-guide).
 
-The engine supports the GTP protocol, means it could be used with a GUI with GTP capability,
-such as [Sabaki](http://sabaki.yichuanshen.de). It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). For more details, see [FAQ question](#8-gtp-command-error--invalid-command)
+##### 2) mcts_main : customized use
+
+If you want to fully control all the options of `mcts_main` (such as, changing log destination, or if start.sh is not compatible for your specific use), you can run instead `bazel-bin/mcts/mcts_main` directly. 
+
+For a typical GTP use (run `genmove b` successfully for example), minimum should be to add these needed command line options :
+- `--gtp` to enable GTP mode
+- `--config_path=replace/with/path/to/your/config/file` to specify the path to your config file
+- it is also needed to edit your config file (.conf) and manually add the full path to ckpt, see [FAQ question](#11-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory). You can also change all config file settings, see [#configure-guide](#configure-guide).
+- for other extra commands , see also [#command-line-options](#command-line-options) for details, or run `./mcts_main --help`
+- for example, for the username amd2018, and PhoenixGo directory in home directory :
+
+```
+cd /home/amd2018/PhoenixGo/bazel-bin/mcts && ./mcts_main --gtp --config_path=/home/amd2018/PhoenixGo/etc/mcts_1gpu.conf --logtostderr --v=0
+```
 
 #### (Optional) : Distribute mode
 
