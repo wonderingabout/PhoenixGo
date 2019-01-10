@@ -94,7 +94,7 @@ For a typical GTP use (run `genmove b` successfully for example), minimum should
 - `--gtp` to enable GTP mode
 - `--config_path=replace/with/path/to/your/config/file` to specify the path to your config file
 - it is also needed to edit your config file (.conf) and manually add the full path to ckpt, see [FAQ question](#11-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory). You can also change all config file settings, see [#configure-guide](#configure-guide).
-- for other extra commands , see also [#command-line-options](#command-line-options) for details, or run `./mcts_main --help`
+- for other extra commands , see also [#command-line-options](#command-line-options) for details, or run `./mcts_main --help` . A copy of the `--help` is provided for your convenience [here](/docs/mcts-main-help.md)
 - for example, for the username amd2018, and PhoenixGo directory in home directory :
 
 ```
@@ -224,6 +224,7 @@ Glog options are also supported:
 * `--v`: verbose log, `--v=1` for turning on some debug log, `--v=0` to turning off
 
 `mcts_main --help` for more command line options.
+A copy of the `--help` is provided for your convenience [here](/docs/mcts-main-help.md)
 
 For windows, see [FAQ question syntax error](#10-syntax-error-windows)
 
