@@ -83,12 +83,12 @@ Run the engine : `scripts/start.sh`
 
 `start.sh` will automatically detect the number of GPUs, run `mcts_main` with proper config file, and write log files in directory `log`.
 
-You could also use a customized config by running `scripts/start.sh {config_path}`. 
+You could also use a customized config file (.conf) by running `scripts/start.sh {config_path}`. 
 If you want to do that, see also [#configure-guide](#configure-guide).
 
-##### 2) mcts_main : customized use
+##### 2) mcts_main : full control use
 
-If you want to fully control all the options of `mcts_main` (such as, changing log destination, or if start.sh is not compatible for your specific use), you can run instead `bazel-bin/mcts/mcts_main` directly. 
+If you want to fully control all the options of `mcts_main` (such as, changing log destination, or if start.sh is not compatible for your specific use), you can run directly `bazel-bin/mcts/mcts_main` instead. 
 
 For a typical GTP use (run `genmove b` successfully for example), minimum should be to add these needed command line options :
 - `--gtp` to enable GTP mode
