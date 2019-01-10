@@ -24,7 +24,7 @@ Then build PhoenixGo with bazel:
 bazel build //mcts:mcts_main
 ```
 
-Dependices such as Tensorflow will be downloaded automatically. The building process may take a long time (1 hour or more).
+Dependencies such as Tensorflow will be downloaded automatically. The building process may take a long time (1 hour or more).
 
 ##### Downloading the trained network (ckpt)
 
