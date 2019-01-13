@@ -399,7 +399,7 @@ This will free a few GB (arround 3-6 GB depending on your installation settings)
 - If you compile PhoenixGo, it has been tested to work on linux [here](/docs/tested-versions.md) with CUDA 10.0, cudnn 7.4.2, ubuntu 18.04, for all operating systems compatible with software GPU support.
 - However currently there is no tensorRT support for PhoenixGo (RTX cards require tensorRT 5.x or more (and this also requires tensorflow 1.9 or more), which is currently not supported by PhoenixGo)
 
-#### Volta cards (Tesla V100 / Titan V and similar)
+##### Volta cards (Tesla V100 / Titan V and similar)
 
 - are compatible with cuda 9.0 (it is recommended to use latest version when possible), cudnn 7.1.x or higher (x is any number)
 - However currently there is no tensorRT support for PhoenixGo (Tesla V100 has been tested not to work with PhoenixGo tensorrt 3.0.4)
