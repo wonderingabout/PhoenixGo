@@ -383,6 +383,20 @@ if you do that, the game will not be scored correctly because PhoenixGo will thi
 
 information : the BensonDarr on [FoxGo server](http://weiqi.qq.com/) is able to play with 6.5 komi because it has been modified, but this is not true for the PhoenixGo engine provided here.
 
+#### A13. I have a nvidia RTX card (Turing) or Tesla V100/Titan V (Volta), is it compatible ?
+
+##### RTX cards (Turing) :
+
+- need CUDA 10.0 or higher (so currently, only linux is supported, or windows with your own building)
+- If you compile PhoenixGo, it has been tested to work on linux [here](/docs/tested-versions.md) with CUDA 10.0, cudnn 7.4.2, ubuntu 18.04.
+- However currently there is no tensorRT support for PhoenixGo (RTX cards require tensorRT 5.x or more (and this also requires tensorflow 1.9 or more), which is currently not supported by PhoenixGo)
+
+##### Volta cards (Tesla V100 / Titan V and similar)
+
+- are compatible with cuda 9.0 and higher (it is recommended to use latest version when possible), cudnn 7.1.x or higher (x is any number)
+- has been tested to work successfully on windows
+- However currently there is no tensorRT support for PhoenixGo (Tesla V100 has been tested not to work with PhoenixGo tensorrt 3.0.4)
+
 ### Specific questions : building with bazel questions (linux and mac)
 
 #### B1. I am getting errors during bazel configure, bazel building, and/or running PhoenixGo engine
@@ -417,16 +431,3 @@ sudo rm -rf ~/PhoenixGo
 sudo rm -rf ~/.cache/bazel
 ```
 This will free a few GB (arround 3-6 GB depending on your installation settings)
-
-#### B5. I have a nvidia RTX card (Turing) or Tesla V100/Titan V (Volta), is it compatible ?
-
-##### RTX cards (Turing) :
-
-- need CUDA 10.0 or higher.
-- If you compile PhoenixGo, it has been tested to work on linux [here](/docs/tested-versions.md) with CUDA 10.0, cudnn 7.4.2, ubuntu 18.04, for all operating systems compatible with software GPU support.
-- However currently there is no tensorRT support for PhoenixGo (RTX cards require tensorRT 5.x or more (and this also requires tensorflow 1.9 or more), which is currently not supported by PhoenixGo)
-
-##### Volta cards (Tesla V100 / Titan V and similar)
-
-- are compatible with cuda 9.0 (it is recommended to use latest version when possible), cudnn 7.1.x or higher (x is any number)
-- However currently there is no tensorRT support for PhoenixGo (Tesla V100 has been tested not to work with PhoenixGo tensorrt 3.0.4)
