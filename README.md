@@ -46,7 +46,7 @@ This all in one command includes :
 - Configure the build : during `./configure` , bazel will ask building options
 and where CUDA, cuDNN, and TensorRT have been installed -> Press ENTER for default
 settings and choose the building options you want, and modify paths if needed 
-(see [FAQ question](/README.md/#12-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) if you need help)
+(see [FAQ question](/README.md/#b1-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) if you need help)
 
 To speed up building and also to reduce build size at the same time, it is recommended to use the minimalist bazel install settings, see : [minimalist bazel install](/docs/minimalist-bazel-insall.md)
 - Build PhoenixGo with bazel :  
@@ -73,7 +73,7 @@ for other linux distributions than ubuntu, or for other specific use, see : [man
 The PhoenixGo engine supports GTP [(Go Text Protocol)](https://senseis.xmp.net/?GoTextProtocol), which means it can be used with a GUI with GTP capability, such as [Sabaki](http://sabaki.yichuanshen.de).
 It can also run on command-line GTP server tools like [gtp2ogs](https://github.com/online-go/gtp2ogs). 
 
-But PhoenixGo does not support all GTP commands, see [FAQ question](#8-gtp-command-error--invalid-command).
+But PhoenixGo does not support all GTP commands, see [FAQ question](#a11-gtp-command-error--invalid-command).
 
 There are 2 ways to run PhoenixGo engine
 
@@ -93,7 +93,7 @@ If you want to fully control all the options of `mcts_main` (such as, changing l
 For a typical GTP use (run `genmove b` successfully for example), minimum should be to add these needed command line options :
 - `--gtp` to enable GTP mode
 - `--config_path=replace/with/path/to/your/config/file` to specify the path to your config file
-- it is also needed to edit your config file (.conf) and manually add the full path to ckpt, see [FAQ question](#11-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory). You can also change all config file settings, see [#configure-guide](#configure-guide).
+- it is also needed to edit your config file (.conf) and manually add the full path to ckpt, see [FAQ question](#a5-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory). You can also change all config file settings, see [#configure-guide](#configure-guide).
 - for other extra commands , see also [#command-line-options](#command-line-options) for details, or run `./mcts_main --help` . A copy of the `--help` is provided for your convenience [here](/docs/mcts-main-help.md)
 - for example, for the username amd2018, and PhoenixGo directory in home directory :
 
@@ -139,6 +139,8 @@ Follow the document included in the archive : using_phoenixgo_on_mac.pdf
 Same as Linux.
 
 ### On Windows
+
+For all windows versions, see correct syntax in [FAQ question](#a4-syntax-error-windows)
 
 #### Use Pre-built Binary
 
@@ -223,12 +225,10 @@ Glog options are also supported:
 * `--minloglevel`: log level, 0 - INFO, 1 - WARNING, 2 - ERROR
 * `--v`: verbose log, `--v=1` for turning on some debug log, `--v=0` to turning off
 
-For analysis purpose, an easy way to display the PV (variations for main move path) is `--logtostderr --v=1` which will display the main move path winrate and continuation of moves analyzed, see [FAQ question]() for details
+For analysis purpose, an easy way to display the PV (variations for main move path) is `--logtostderr --v=1` which will display the main move path winrate and continuation of moves analyzed, see [FAQ question](#a2-where-is-the-pv-analysis-) for details
 
 `mcts_main --help` for more command line options.
 A copy of the `--help` is provided for your convenience [here](/docs/mcts-main-help.md)
-
-For windows, see [FAQ question syntax error](#10-syntax-error-windows)
 
 ## FAQ
 
