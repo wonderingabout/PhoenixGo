@@ -1,9 +1,9 @@
 For your convenience, a copy of  `./mcts_main --help` output is provided to you below
 Date is January 2019, so it may be outdated if newer versions are released
 
-`amd2018@amd2018-MS-7B86:~/PhoenixGo/bazel-bin/mcts$ ./mcts_main --help`
+`./mcts_main --help`
 
-Output the below result :
+Outputs the below result :
 
 ```
 mcts_main: Warning: SetUsageMessage() never called
@@ -108,7 +108,4 @@ mcts_main: Warning: SetUsageMessage() never called
       default: 0
     -listen_port (Listen which port.) type: int32 default: 0
 
-`amd2018@amd2018-MS-7B86:~/PhoenixGo/bazel-bin/mcts$`
-
 ```
-
