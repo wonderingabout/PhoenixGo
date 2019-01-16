@@ -212,7 +212,7 @@ Read `mcts/mcts_config.proto` for more config options.
 
 * `--config_path`: path of config file
 * `--gtp`: run as a GTP engine, if disable, gen next move only
-* `--init_moves`: initial moves on the go board
+* `--init_moves`: initial moves on the go board, for example of use, see [#83](https://github.com/Tencent/PhoenixGo/issues/83)
 * `--gpu_list`: override `gpu_list` in config file
 * `--listen_port`: work with `--gtp`, run gtp engine on port in TCP protocol
 * `--allow_ip`: work with `--listen_port`, list of client ip allowed to connect
