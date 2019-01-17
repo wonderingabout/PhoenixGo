@@ -36,21 +36,25 @@ Recommendation : the bazel building uses a lot of RAM, so it is recommended that
 
 You have 2 possibilities for building on linux :
 
-#### Building - Possibility A : (easy) Automatic all in command for ubuntu
+#### Building - Possibility A : (easy) Automatic all in one command for ubuntu
 
 This all in one command includes : 
 - Download and install bazel and its dependencies (apt-get)
 - Clone PhoenixGo from Tencent github
 - Download and extract the trained network (ckpt) archive
 - Cleanup : remove the trained network archive (.tar.gz) and the bazel installer (.sh file)
-- Configure the build : during `./configure` , bazel will ask building options
-and where CUDA, cuDNN, and TensorRT have been installed -> Press ENTER for default
-settings and choose the building options you want, and modify paths if needed 
+- Configure the build : during `./configure` , bazel will ask building options :  Press ENTER for default.
+CUDA and cuDNN, and optionally TensorRT, are needed only if you want the GPU version (much faster to compute moves)
+
+-> If you want to build the CPU-only version, disable these features (much slower to compute moves).
+-> If you want to build the GPU version, enable these features,  
+
+Then choose the other building options you want, and modify paths if needed 
 (see [FAQ question](/README.md/#b1-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) if you need help)
 
-To speed up building and also to reduce build size at the same time, it is recommended to use the minimalist bazel configure settings, see : [minimalist bazel configure](/docs/minimalist-bazel-configure.md)
+To speed up building and also to reduce build size at the same time, it is recommended to use the minimalist bazel configure settings, see this example with the GPU version building : [minimalist bazel configure](/docs/minimalist-bazel-configure.md)
 - Build PhoenixGo with bazel :  
-Dependencies such as Tensorflow will be downloaded automatically. 
+Dependencies such as Tensorflow will be downloaded and installed automatically. 
 
 The building process may take a long time (1 hour or more) : 
 
@@ -150,14 +154,14 @@ The GPU version is much faster, but works only with compatible nvidia GPU.
 It supports this environment : 
 - CUDA 9.0 only
 - cudnn 7.1.x (x is any number) or lower for CUDA 9.0
-- no AVX, AVX2, AVX512 instructions supported in this release (so it is much slower than the linux version)
+- no AVX, AVX2, AVX512 instructions supported in this release (so it is currently much slower than the linux version)
 - there is no TensorRT support on Windows
 
 Download and extract [GPU version (Windows)](https://github.com/Tencent/PhoenixGo/releases/download/win-x64-gpu-v1/PhoenixGo-win-x64-gpu-v1.zip)
 
 Then follow the document included in the archive : how to install phoenixgo.pdf
 
-note : to support special features like CUDA 10.0 or AVX512 for example, you can compile your own build for windows
+note : to support special features like CUDA 10.0 or AVX512 for example, you can build your own build for windows, see [#79](https://github.com/Tencent/PhoenixGo/issues/79)
 
 ##### CPU-only version : 
 
