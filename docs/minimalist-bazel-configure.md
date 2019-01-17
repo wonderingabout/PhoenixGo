@@ -1,4 +1,4 @@
-To save space and building time, it is wise to remove all the uneeded options during the bazel `./configure` , as was discussed here : [#76](https://github.com/Tencent/PhoenixGo/issues/76)
+To reduce phoenixgo size and building time, it is wise to remove all the uneeded options during the bazel `./configure` , as was discussed here : [#76](https://github.com/Tencent/PhoenixGo/issues/76)
 
 This is an example of minimalist options that you can use : 
 
