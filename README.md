@@ -48,7 +48,7 @@ and where CUDA, cuDNN, and TensorRT have been installed -> Press ENTER for defau
 settings and choose the building options you want, and modify paths if needed 
 (see [FAQ question](/README.md/#b1-i-am-getting-errors-during-bazel-configure-bazel-building-andor-running-phoenixgo-engine) if you need help)
 
-To speed up building and also to reduce build size at the same time, it is recommended to use the minimalist bazel install settings, see : [minimalist bazel install](/docs/minimalist-bazel-insall.md)
+To speed up building and also to reduce build size at the same time, it is recommended to use the minimalist bazel configure settings, see : [minimalist bazel configure](/docs/minimalist-bazel-configure.md)
 - Build PhoenixGo with bazel :  
 Dependencies such as Tensorflow will be downloaded automatically. 
 
@@ -248,11 +248,11 @@ It is possible to display the PV (variation of move path with continuation of th
 
 An easy way to do that is for example to increase verbose level, for example `--logtostderr --v=1`
 
-result is something like this :
+result is something like this (in this example there are 7000 simulations per move) :
 
 ```
 [5489] stderr: I0116 15:55:09.910559  5489 mcts_debugger.cc:43] ========== debug info for 27th move(b) begin ==========
-Jan 16 15:55:09 !!!!! [5489] stderr: I0116 15:55:09.910596  5489 mcts_debugger.cc:44] main move path: mg(6482,-0.12,0.89,-0.09),lf(6349,0.12,0.88,0.08),lg(3006,-0.12,0.53,-0.12),kf(2654,0.14,0.63,-0.01),qh(941,-0.11,0.16,-0.11),qi(785,0.12,0.77,0.13),rh(784,-0.12,0.98,-0.13),pi(538,0.13,0.52,0.09),rg(445,-0.12,0.73,-0.18),og(365,0.13,0.76,0.15),pf(363,-0.13,0.98,-0.19),rd(159,0.10,0.52,0.14),ql(47,-0.06,0.21,-0.18),oq(19,0.04,0.36,-0.03),nq(12,-0.05,0.58,-0.07),pq(11,0.05,0.97,0.03),np(10,-0.05,0.79,-0.12),qn(9,0.04,0.84,0.03),ol(8,-0.05,0.82,-0.05),fc(6,0.07,0.60,0.06),kg(4,-0.06,0.42,-0.13),jf(2,-0.02,0.53,0.02),jg(1,0.05,0.45,0.05),cg(0,-nan,0.00,nan)
+[5489] stderr: I0116 15:55:09.910596  5489 mcts_debugger.cc:44] main move path: mg(6482,-0.12,0.89,-0.09),lf(6349,0.12,0.88,0.08),lg(3006,-0.12,0.53,-0.12),kf(2654,0.14,0.63,-0.01),qh(941,-0.11,0.16,-0.11),qi(785,0.12,0.77,0.13),rh(784,-0.12,0.98,-0.13),pi(538,0.13,0.52,0.09),rg(445,-0.12,0.73,-0.18),og(365,0.13,0.76,0.15),pf(363,-0.13,0.98,-0.19),rd(159,0.10,0.52,0.14),ql(47,-0.06,0.21,-0.18),oq(19,0.04,0.36,-0.03),nq(12,-0.05,0.58,-0.07),pq(11,0.05,0.97,0.03),np(10,-0.05,0.79,-0.12),qn(9,0.04,0.84,0.03),ol(8,-0.05,0.82,-0.05),fc(6,0.07,0.60,0.06),kg(4,-0.06,0.42,-0.13),jf(2,-0.02,0.53,0.02),jg(1,0.05,0.45,0.05),cg(0,-nan,0.00,nan)
 [5489] stderr: I0116 15:55:09.910604  5489 mcts_debugger.cc:139] mg: N=6482, W=-757.077, Q=-0.116797, p=0.887549, v=-0.0932888
 [5489] stderr: I0116 15:55:09.910609  5489 mcts_debugger.cc:139] oh: N=262, W=-38.6935, Q=-0.147685, p=0.0710239, v=-0.137658
 [5489] stderr: I0116 15:55:09.910614  5489 mcts_debugger.cc:139] qh: N=38, W=-6.34157, Q=-0.166883, p=0.0139782, v=-0.144544
@@ -403,20 +403,22 @@ information : the BensonDarr on [FoxGo server](http://weiqi.qq.com/) is able to 
 
 If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](/docs/path-errors.md)
 
+See also [minimalist bazel configure](/docs/minimalist-bazel-configure.md) for an example of build configure
+
 If you are still getting errors, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
 
-#### B2. I cannot increase batch size to more than 4 with TensorRT (linux only) : errors
+#### B2. The PhoenixGo and bazel folders are too big
+
+During the bazel building, there are many options that can are not required and can be disabled
+
+This will reduce building time and will have smaller size after the building, see [minimalist bazel configure](/docs/minimalist-bazel-configure.md) and [#76](https://github.com/Tencent/PhoenixGo/issues/76)
+
+#### B3. I cannot increase batch size to more than 4 with TensorRT (linux only) : errors
 
 Increasing batch size in the config file makes the engine compute faster, as explained earlier in [FAQ question](#6-what-is-the-speed-of-the-engine--how-can-i-make-the-engine-think-faster-)
 
 However, with default building, you cannot use batch size higher than 4 with tensorRT
 To increase batch size for example to 32 with tensorRT enabled, you need to build tensorrt model with bazel, See : [#75](https://github.com/Tencent/PhoenixGo/issues/75)
-
-#### B3. The PhoenixGo and bazel folders are too big
-
-During the bazel building, there are many options that can are not required and can be disabled
-
-This will reduce building time and size after the install, see [minimalist install](/docs/minimalist-bazel-install.md) and [#76](https://github.com/Tencent/PhoenixGo/issues/76)
 
 #### B4. How to remove entirely all PhoenixGo and bazel files and folders ?
 
