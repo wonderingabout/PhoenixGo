@@ -371,9 +371,34 @@ time_control {
 
 #### A11. GTP command error : `invalid command`
 
-Some GTP commands are not supported by PhoenixGo, for example the `showboard` command. Using unsupported commands will most likely make the engine not work. Make sure your GTP tool does not communicate with PhoenixGo with unsupported GTP commands.
+Some GTP commands are not supported by PhoenixGo, for example the `showboard` command. 
 
-For example, for [gtp2ogs](https://github.com/online-go/gtp2ogs) server command line GTP tool, you need to edit the file gtp2ogs.js and manually remove the `showboard` line if it is not already done, [see](https://github.com/online-go/gtp2ogs/commit/d5ebdbbde259a97c5ae1aed0ec42a07c9fbb2dbf)
+To know supported GTP commands, start phoenixgo in GTP mode and enter the GTP command `list_commands`
+
+Result as of today is : 
+
+```
+version
+protocol_version
+list_commands
+quit
+clear_board
+boardsize
+komi
+time_settings
+time_left
+place_free_handicap
+set_free_handicap
+play
+genmove
+final_score
+get_debug_info
+get_last_move_debug_info
+```
+
+If you use unsupported commands the engine will not work. Make sure your GTP tool does not communicate with PhoenixGo with unsupported GTP commands.
+
+For example, for [gtp2ogs](https://github.com/online-go/gtp2ogs) server command line GTP tool, you need to edit the file gtp2ogs.js and manually remove the existing `showboard` line if it is not already done, [see](https://github.com/online-go/gtp2ogs/commit/d5ebdbbde259a97c5ae1aed0ec42a07c9fbb2dbf)
 
 #### A12. The game does not start, error : `unacceptable komi`
 
