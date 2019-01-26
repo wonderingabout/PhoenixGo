@@ -235,7 +235,7 @@ A copy of the `--help` is provided for your convenience [here](/docs/mcts-main-h
 ## Analysis
 
 It is possible to analyse .sgf files using analysis tools such as :
-- [GoReviewPartner](https://github.com/pnprog/goreviewpartner) : an automated tool to analyse and/or review one or many .sgf files (saved as .rsgf file). It supports PhoenixGo and other bots. See [FAQ question]() for details
+- [GoReviewPartner](https://github.com/pnprog/goreviewpartner) : an automated tool to analyse and/or review one or many .sgf files (saved as .rsgf file). It supports PhoenixGo and other bots. See [FAQ question](#a25-how-to-analyzereview-one-or-many-sgf-files-with-goreviewpartner) for details
 
 For analysis purpose, an easy way to display the PV (variations for main move path) is `--logtostderr --v=1` which will display the main move path winrate and continuation of moves analyzed, see [FAQ question](#a2-where-is-the-pv-analysis-) for details
 
@@ -278,7 +278,6 @@ result is something like this (in this example there are 7000 simulations per mo
 
 It is also possible to develop all the tree by adding these lines to your config file :
 
-
 ```
 debugger {
     print_tree_depth: 6
@@ -290,21 +289,29 @@ In this example, a tree of 6 depth 6 width moves will be printed
 
 2 config files are provided to you using optimized settings for grp
 - with tensorrt (linux only) : [mcts_1gpu_grp.conf](/etc/mcts_1gpu_grp.conf)
-- without tensorrt (linux, mac, windows, gpu or cpu version) : [mcts_1gpu_notensorrt_grp.conf](/etc/mcts_1gpu_notensorrt_grp.conf)
+- without tensorrt (linux, mac, windows, gpu or cpu version) :
+ [mcts_1gpu_notensorrt_grp.conf](/etc/mcts_1gpu_notensorrt_grp.conf)
  
 note : it is also possible with multiple GPU, only the most common example was shown here
 
 #### A2.5 How to analyze/review one or many sgf file(s) with GoReviewPartner
 
-timemanage off
-no timeout
-use playouts
-disable background search (pondering)
-add debug
-add grp profile in config.ini example
+Support is still in testing, but so far these are the recommended settings to do use PhoenixGo with GoReviewPartner
 
-see [#86](https://github.com/Tencent/PhoenixGo/issues/86) for details
+in phoenixgo .conf config file :
 
+- disable all time settings in config file (set to `0`)
+- set time to unlimited (set timeout to 0 ms)
+- use simulations per move to have fixed computation per move (playouts), because it is not needed to play fast since this 
+is an analysis, unlimited time
+- for the same reason, set `enable background search` to 0 (disable pondering), because this is not a live game, 
+time settings are not needed and can cause conflicts
+- add debug width and height with `debugger` in config file, see previous FAQ question
+
+in grp (GoReviewPartner) settings :
+- it is easier to use one of the pre-made grp profile in config.ini (slightly modify them if needed)
+
+see [#86](https://github.com/Tencent/PhoenixGo/issues/86) and [#99](https://github.com/pnprog/goreviewpartner/issues/99) for details
 
 #### A3. There are too much log.
 
