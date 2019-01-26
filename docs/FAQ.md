@@ -61,8 +61,8 @@ in phoenixgo .conf config file :
 
 - disable all time settings in config file (set to `0`)
 - set time to unlimited (set timeout to 0 ms)
-- use simulations per move to have fixed computation per move (playouts), because it is not needed to play fast since this 
-is an analysis, unlimited time
+- use simulations per move to have fixed computation per move (playouts), because it 
+is not needed to play fast since this is an analysis, unlimited time
 - for the same reason, set `enable background search` to 0 (disable pondering), because this is not a live game, 
 time settings are not needed and can cause conflicts
 - add debug width and height with `debugger` in config file, see previous FAQ question
@@ -70,12 +70,15 @@ time settings are not needed and can cause conflicts
 in grp (GoReviewPartner) settings :
 - it is easier to use one of the pre-made grp profile in config.ini (slightly modify them if needed)
 
-Don't forget to add paths in the config file as explained in [FAQ question](/docs/FAQ.md/#a5-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
+Don't forget to add paths in the config file as explained in 
+[FAQ question](/docs/FAQ.md/#a5-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
 
-If you're on windows, you need to also pay attention to the syntax too, see [FAQ question](/docs/FAQ.md/#a4-syntax-error-windows)
+If you're on windows, you need to also pay attention to the syntax too, 
+see [FAQ question](/docs/FAQ.md/#a4-syntax-error-windows)
 
 and run the mcts_main (not start.sh) with the needed parameters, 
-see an example [here](https://github.com/wonderingabout/goreviewpartner/blob/config-profiles-phoenixgo/config.ini#L100-L116)
+see an example 
+[here](https://github.com/wonderingabout/goreviewpartner/blob/config-profiles-phoenixgo/config.ini#L100-L116)
 
 also, see [#86](https://github.com/Tencent/PhoenixGo/issues/86) and [#99](https://github.com/pnprog/goreviewpartner/issues/99) for details
 
@@ -101,7 +104,8 @@ model_config {
 
 - in cmd.exe,
 
-Here you need to write paths with `\` and not `/`. Also command format on windows needs a space and not a `=`, for example : 
+Here you need to write paths with `\` and not `/`. 
+Also command format on windows needs a space and not a `=`, for example : 
 
 `mcts_main.exe --gtp --config_path C:\Users\amd2018\Downloads\PhoenixGo\etc\mcts_1gpu_notensorrt.conf`
 
@@ -109,7 +113,8 @@ See next point below :
 
 #### A5. '"ckpt/zero.ckpt-20b-v1.FP32.PLAN"' error: No such file or directory
 
-This fix works for all systems : Linux, Mac, Windows, only the name of the ckpt file changes. Modify your config file and write the full path of your ckpt directory, for example for linux : 
+This fix works for all systems : Linux, Mac, Windows, only the name of the ckpt file changes. 
+Modify your config file and write the full path of your ckpt directory, for example for linux : 
 
 ```
 model_config {
@@ -153,13 +158,17 @@ each move will cost constant time/simulations.
 
 GPU is much faster to compute than CPU (but only nvidia GPU are supported)
 
-TensorRT also increases significantly the speed of computation, but it is only available for linux with a compatible nvidia GPU
+TensorRT also increases significantly the speed of computation, but it is only 
+available for linux with a compatible nvidia GPU
 
-Bigger batch size significantly increases the speed of the computation, but a bigger batch size puts a bigger burden on the computation device (in case it is the GPU, higher GPU load, higher VRAM usage), increase it only if your computation device can handle it
+Bigger batch size significantly increases the speed of the computation, but a bigger 
+batch size puts a bigger burden on the computation device (in case it is the GPU, 
+higher GPU load, higher VRAM usage), increase it only if your computation device can handle it
 
 Some independent speed benchmarks have been run, they are available in the docs :
 
-- for GTX 1060 :  [benchmark testing batch size from 4 to 64, tree size up to 2000M, max children up to 512, with tensorRT ON and OFF](/docs/benchmark-gtx1060.md)
+- for GTX 1060 :  
+[benchmark testing batch size from 4 to 64, tree size up to 2000M, max children up to 512, with tensorRT ON and OFF](/docs/benchmark-gtx1060.md)
 
 #### A10. GTP command `time_settings` doesn't work.
 
@@ -204,58 +213,83 @@ get_debug_info
 get_last_move_debug_info
 ```
 
-If you use unsupported commands the engine will not work. Make sure your GTP tool does not communicate with PhoenixGo with unsupported GTP commands.
+If you use unsupported commands the engine will not work. Make sure your GTP tool 
+does not communicate with PhoenixGo with unsupported GTP commands.
 
-For example, for [gtp2ogs](https://github.com/online-go/gtp2ogs) server command line GTP tool, you need to edit the file gtp2ogs.js and manually remove the existing `showboard` line if it is not already done, [see](https://github.com/online-go/gtp2ogs/commit/d5ebdbbde259a97c5ae1aed0ec42a07c9fbb2dbf)
+For example, for [gtp2ogs](https://github.com/online-go/gtp2ogs) server command line GTP tool,
+you need to edit the file gtp2ogs.js and manually remove the existing `showboard` line if it 
+is not already done, 
+[see](https://github.com/online-go/gtp2ogs/commit/d5ebdbbde259a97c5ae1aed0ec42a07c9fbb2dbf)
 
 #### A12. The game does not start, error : `unacceptable komi`
 
-With the default settings, the only komi value supported is only 7.5, with chinese rules only. If it is not automated, you need to manually set komi value to 7.5 with chinese rules.
+With the default settings, the only komi value supported is only 7.5, with chinese rules only.
+If it is not automated, you need to manually set komi value to 7.5 with chinese rules.
 
-If you want to implement PhoenixGo to a server where players play with different komi values (for example 6.5, 0.5, 85.5, 200.5,etc), you need to force komi to 7.5 for the players. 
+If you want to implement PhoenixGo to a server where players play with different komi values 
+(for example 6.5, 0.5, 85.5, 200.5,etc), you need to force komi to 7.5 for the players. 
 
-If it is not possible, there is a workaround you can use : configure you GTP tool to tell PhoenixGo engine that the komi for the game is 7.5 even if it is not true
+If it is not possible, there is a workaround you can use : configure you GTP tool to tell 
+PhoenixGo engine that the komi for the game is 7.5 even if it is not true
 
-if you do that, the game will not be scored correctly because PhoenixGo will think that the komi is 7.5 while the real komi is different, but at least PhoenixGo will be able to play the game. An example for [gtp2ogs](https://github.com/online-go/gtp2ogs) is provided [here](https://github.com/wonderingabout/gtp2ogs-tutorial/blob/master/docs/3A4-linux-optional-edit-gtp2ogs-js-file.md) and [here](https://github.com/wonderingabout/gtp2ogs-tutorial/blob/master/docs/3B4-windows-optional-edit-gtp2ogs-js-file.md)
+if you do that, the game will not be scored correctly because PhoenixGo will think that 
+the komi is 7.5 while the real komi is different, but at least PhoenixGo will be able to
+play the game. 
+An example for [gtp2ogs](https://github.com/online-go/gtp2ogs) is provided 
+[here](https://github.com/wonderingabout/gtp2ogs-tutorial/blob/master/docs/3A4-linux-optional-edit-gtp2ogs-js-file.md) 
+and [here](https://github.com/wonderingabout/gtp2ogs-tutorial/blob/master/docs/3B4-windows-optional-edit-gtp2ogs-js-file.md)
 
-information : the BensonDarr on [FoxGo server](http://weiqi.qq.com/) is able to play with 6.5 komi because it has been modified, but this is not true for the PhoenixGo engine provided here.
+information : the BensonDarr on [FoxGo server](http://weiqi.qq.com/) is able to play with 6.5 komi
+because it has been modified, but this is not true for the PhoenixGo engine provided here.
 
 #### A13. I have a nvidia RTX card (Turing) or Tesla V100/Titan V (Volta), is it compatible ?
 
 ##### RTX cards (Turing) :
 
 - need CUDA 10.0 or higher (so currently, only linux is supported, or windows with your own building)
-- If you compile PhoenixGo, it has been tested to work on linux [here](/docs/tested-versions.md) with CUDA 10.0, cudnn 7.4.2, ubuntu 18.04.
-- However currently there is no tensorRT support for PhoenixGo (RTX cards require tensorRT 5.x or more (and this also requires tensorflow 1.9 or more), which is currently not supported by PhoenixGo)
+- If you compile PhoenixGo, it has been tested to work on linux [here](/docs/tested-versions.md) 
+with CUDA 10.0, cudnn 7.4.2, ubuntu 18.04.
+- However currently there is no tensorRT support for PhoenixGo (RTX cards require tensorRT 5.x or more
+(and this also requires tensorflow 1.9 or more), which is currently not supported by PhoenixGo)
 
 ##### Volta cards (Tesla V100 / Titan V and similar)
 
-- are compatible with cuda 9.0 and higher (it is recommended to use latest version when possible), cudnn 7.1.x or higher (x is any number)
+- are compatible with cuda 9.0 and higher (it is recommended to use latest version when possible),
+cudnn 7.1.x or higher (x is any number)
 - has been tested to work successfully on windows
-- However currently there is no tensorRT support for PhoenixGo (Tesla V100 has been tested not to work with PhoenixGo tensorrt 3.0.4)
+- However currently there is no tensorRT support for PhoenixGo (Tesla V100 has been tested not to work
+with PhoenixGo tensorrt 3.0.4)
 
 ### Specific questions : building with bazel questions (linux and mac)
 
 #### B1. I am getting errors during bazel configure, bazel building, and/or running PhoenixGo engine
 
-If you built with bazel, see : [Most common path errors during cuda/cudnn install and bazel configure](/docs/path-errors.md)
+If you built with bazel, see : 
+[Most common path errors during cuda/cudnn install and bazel configure](/docs/path-errors.md)
 
-See also [minimalist bazel configure](/docs/minimalist-bazel-configure.md) for an example of build configure
+See also [minimalist bazel configure](/docs/minimalist-bazel-configure.md) for an example 
+of build configure
 
-If you are still getting errors, try using an older version of bazel. For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
+If you are still getting errors, try using an older version of bazel. 
+For example bazel 0.20.0 is known to cause issues, and **bazel 0.11.1 is known good**
 
 #### B2. The PhoenixGo and bazel folders are too big
 
 During the bazel building, there are many options that can are not required and can be disabled
 
-This will reduce building time and will have smaller size after the building, see [minimalist bazel configure](/docs/minimalist-bazel-configure.md) and [#76](https://github.com/Tencent/PhoenixGo/issues/76)
+This will reduce building time and will have smaller size after the building, 
+see [minimalist bazel configure](/docs/minimalist-bazel-configure.md) and 
+[#76](https://github.com/Tencent/PhoenixGo/issues/76)
 
 #### B3. I cannot increase batch size to more than 4 with TensorRT (linux only) : errors
 
-Increasing batch size in the config file makes the engine compute faster, as explained earlier in [FAQ question](/docs/FAQ.md/#6-what-is-the-speed-of-the-engine--how-can-i-make-the-engine-think-faster-)
+Increasing batch size in the config file makes the engine compute faster, 
+as explained earlier in 
+[FAQ question](/docs/FAQ.md/#6-what-is-the-speed-of-the-engine--how-can-i-make-the-engine-think-faster-)
 
 However, with default building, you cannot use batch size higher than 4 with tensorRT
-To increase batch size for example to 32 with tensorRT enabled, you need to build tensorrt model with bazel, See : [#75](https://github.com/Tencent/PhoenixGo/issues/75)
+To increase batch size for example to 32 with tensorRT enabled, you need to build tensorrt model
+with bazel, See : [#75](https://github.com/Tencent/PhoenixGo/issues/75)
 
 #### B4. How to remove entirely all PhoenixGo and bazel files and folders ?
 
