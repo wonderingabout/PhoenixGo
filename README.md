@@ -287,16 +287,18 @@ debugger {
 
 In this example, a tree of 6 depth 6 width moves will be printed
 
-2 config files are provided to you using optimized settings for grp
+#### A2.5 How to analyze/review one or many sgf file(s) with GoReviewPartner
+
+Support is still in testing, but so far these are the recommended settings to do use PhoenixGo with GoReviewPartner
+
+2 config files are provided to you using optimized settings for grp (GoReviewPartner)
 - with tensorrt (linux only) : [mcts_1gpu_grp.conf](/etc/mcts_1gpu_grp.conf)
 - without tensorrt (linux, mac, windows, gpu or cpu version) :
  [mcts_1gpu_notensorrt_grp.conf](/etc/mcts_1gpu_notensorrt_grp.conf)
  
-note : it is also possible with multiple GPU, only the most common example was shown here
+note : it is also possible with multiple GPU, only the most common examples were shown here
 
-#### A2.5 How to analyze/review one or many sgf file(s) with GoReviewPartner
-
-Support is still in testing, but so far these are the recommended settings to do use PhoenixGo with GoReviewPartner
+if you want to do the changes manually, you need to :
 
 in phoenixgo .conf config file :
 
@@ -311,7 +313,14 @@ time settings are not needed and can cause conflicts
 in grp (GoReviewPartner) settings :
 - it is easier to use one of the pre-made grp profile in config.ini (slightly modify them if needed)
 
-see [#86](https://github.com/Tencent/PhoenixGo/issues/86) and [#99](https://github.com/pnprog/goreviewpartner/issues/99) for details
+Don't forget to add paths in the config file as explained in [FAQ question](#a5-ckptzerockpt-20b-v1fp32plan-error-no-such-file-or-directory)
+
+If you're on windows, you need to also pay attention to the syntax too, see [FAQ question](#a4-syntax-error-windows)
+
+and run the mcts_main (not start.sh) with the needed parameters, 
+see an example [here](https://github.com/wonderingabout/goreviewpartner/blob/config-profiles-phoenixgo/config.ini#L100-L116)
+
+also, see [#86](https://github.com/Tencent/PhoenixGo/issues/86) and [#99](https://github.com/pnprog/goreviewpartner/issues/99) for details
 
 #### A3. There are too much log.
 
