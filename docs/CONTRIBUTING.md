@@ -138,6 +138,14 @@ git reset --hard db3078821cd7754a98f341466d4707a985720f2d
 note : the "hard" reset will erase forever all commits later than this commit, 
 use with caution !!
 
+Then to export your local changes to the github server website page, 
+force push your local changes : 
+
+```
+git branch
+git push --force origin yourbranchname 
+```
+
 ### 8) Create a pull request comparing yourgithubusername yourbranchname with PhoenixGo master
 
 On the github website, click on "create pull request", and compare your branch
