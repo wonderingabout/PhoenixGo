@@ -138,7 +138,7 @@ git reset --hard db3078821cd7754a98f341466d4707a985720f2d
 note : the "hard" reset will erase forever all commits later than this commit, 
 use with caution !!
 
-### 8) Create a pull request comparing yourgithubusername yourbranchname with onlinego master
+### 8) Create a pull request comparing yourgithubusername yourbranchname with PhoenixGo master
 
 On the github website, click on "create pull request", and compare your branch
  to Tencent master branch
