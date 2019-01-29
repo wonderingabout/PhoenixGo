@@ -270,3 +270,12 @@ Since it is too big it has been moved on a separate page
 
 [Visit the FAQ.md page here](/docs/FAQ.md)
 
+## Contributing
+
+PhoenixGo is an open source software, any person can contribute to improve and help !
+
+If you have made changes and improvements to PhoenixGo and want to add them to the PhoenixGo 
+page or software, follow these instructions : [CONTRIBUTING.md](/docs/CONTRIBUTING.md)
+
+If you have questions, ask them in the ["Issues"](https://github.com/Tencent/PhoenixGo/issues) page
+
