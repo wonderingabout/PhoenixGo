@@ -12,7 +12,8 @@ I0514 12:51:32.724236 14467 mcts_engine.cc:157] 1th move(b): dp, <b>winrate=44.1
 
 It is possible to display the PV (variation of move path with continuation of the moves)
 
-An easy way to do that is for example to increase verbose level, for example `--logtostderr --v=1`
+An easy way to do that is for example to increase verbose level, for example `--logtostderr --v=1` 
+(on windows the syntax is different, see [FAQ question](/docs/FAQ.md#a4-syntax-error-windows) for details
 
 result is something like this (in this example there are 7000 simulations per move) :
 
@@ -108,6 +109,10 @@ Here you need to write paths with `\` and not `/`.
 Also command format on windows needs a space and not a `=`, for example : 
 
 `mcts_main.exe --gtp --config_path C:\Users\amd2018\Downloads\PhoenixGo\etc\mcts_1gpu_notensorrt.conf`
+
+or if you want to show the PV, you need to remove the `=` too, for example : 
+
+`mcts_main.exe --gtp --config_path C:\Users\amd2018\Downloads\PhoenixGo\etc\mcts_1gpu_notensorrt.conf --logtostderr --v 1`
 
 See next point below :
 
